@@ -1,0 +1,42 @@
+@use "../../styles/global.scss" as *;
+
+.navbar {
+  padding: 20px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    h2 {
+      font-size: 18px;
+    }
+  }
+}
+
+.navbar__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  button {
+    display: flex;
+    align-items: center;
+
+    background-color: $primary;
+    color: white;
+    border-radius: 24px;
+    padding: 10px 18px;
+
+    border: none;
+  }
+}
