@@ -5,3 +5,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* Globals */
+
+main {
+  height: 88%;
+}
+
+button:hover {
+  cursor: pointer;
+}

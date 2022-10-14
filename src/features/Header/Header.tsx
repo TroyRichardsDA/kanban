@@ -2,20 +2,19 @@ import ChevronDown from "../../assets/icon-chevron-down.svg";
 import MobileLogo from "../../assets/logo-mobile.svg";
 import Ellipsis from "../../assets/icon-vertical-ellipsis.svg";
 import Plus from "../../assets/icon-add-task-mobile.svg";
-import styles from "./Navbar.module.scss";
-type Props = {};
+import styles from "./Header.module.scss";
 
-function Navbar({}: Props) {
+function Header() {
   return (
-    <nav className={styles.navbar}>
-      <div className={styles.navbar__left}>
+    <nav className={styles.header}>
+      <div className={styles.header__left}>
         <img src={MobileLogo} alt="" />
         <div>
           <h2>Platform Launch</h2>
           <img src={ChevronDown} alt="arrow down" />
         </div>
       </div>
-      <div className={styles.navbar__right}>
+      <div className={styles.header__right}>
         <button className="">
           <img src={Plus} alt="" />
         </button>
@@ -25,4 +24,4 @@ function Navbar({}: Props) {
   );
 }
 
-export default Navbar;
+export default Header;

@@ -1,0 +1,30 @@
+@use "../../styles/variables.scss" as *;
+
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty {
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 18px;
+
+  text-align: center;
+  color: $grey;
+  font-size: 18px;
+
+  button {
+    color: white;
+    background-color: $primary;
+    border: none;
+    padding: 14px 18px;
+    border-radius: 24px;
+    font-weight: 700;
+    line-height: 19px;
+  }
+}

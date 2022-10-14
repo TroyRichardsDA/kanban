@@ -1,13 +1,14 @@
-@use "../../styles/global.scss" as *;
+@use "../../styles/variables.scss" as *;
 
-.navbar {
+.header {
   padding: 20px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: white;
 }
 
-.navbar__left {
+.header__left {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -23,7 +24,7 @@
   }
 }
 
-.navbar__right {
+.header__right {
   display: flex;
   align-items: center;
   gap: 16px;
