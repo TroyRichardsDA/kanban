@@ -18,6 +18,10 @@ export const columnsSlice = createSlice({
 
       if (cols.length === 0) {
         cols.push({ name: "todo" });
+      } else if (cols.length === 1) {
+        cols.push({ name: "doing", tasks: [] });
+      } else if (cols.length === 2) {
+        cols.push({ name: "done", tasks: [] });
       }
     },
   },

@@ -3,10 +3,13 @@ import MobileLogo from "../../assets/logo-mobile.svg";
 import Ellipsis from "../../assets/icon-vertical-ellipsis.svg";
 import Plus from "../../assets/icon-add-task-mobile.svg";
 import styles from "./Header.module.scss";
-import { useAppSelector } from "../../context/hooks";
+import { useAppDispatch, useAppSelector } from "../../context/hooks";
+import { openAddNewTask } from "../../context/tasks";
 
 function Header() {
   const { columns } = useAppSelector((state) => state.columns);
+  const dispatch = useAppDispatch();
+  const colsEmpty = columns.length === 0;
 
   return (
     <nav className={styles.header}>
@@ -18,7 +21,11 @@ function Header() {
         </div>
       </div>
       <div className={styles.header__right}>
-        <button className={columns.length > 0 ? "" : styles.dimmed}>
+        <button
+          onClick={() => dispatch(openAddNewTask())}
+          disabled={colsEmpty ? true : false}
+          className={colsEmpty ? styles.dimmed : ""}
+        >
           <img src={Plus} alt="" />
         </button>
         <img className={styles.ellipsis} src={Ellipsis} alt="" />

@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Board } from "../models/Board";
 
-const initialState: Board[] = [
-  {
-    name: "Platform Lanuch",
-  },
-];
+interface BoardsState {
+  boards: Board[];
+}
+
+const initialState: BoardsState = {
+  boards: [],
+};
 
 export const boardsSlice = createSlice({
   name: "boards",

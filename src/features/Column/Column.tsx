@@ -1,4 +1,3 @@
-import React from "react";
 import Card from "../../components/Card/Card";
 import { Task } from "../../models/Task";
 import styles from "./Column.module.scss";
@@ -23,7 +22,7 @@ const Column = (props: Props) => {
       </div>
       <div>
         {tasks?.map((task) => (
-          <Card />
+          <Card task={task} />
         ))}
       </div>
     </section>
