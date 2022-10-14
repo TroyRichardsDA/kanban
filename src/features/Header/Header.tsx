@@ -3,8 +3,11 @@ import MobileLogo from "../../assets/logo-mobile.svg";
 import Ellipsis from "../../assets/icon-vertical-ellipsis.svg";
 import Plus from "../../assets/icon-add-task-mobile.svg";
 import styles from "./Header.module.scss";
+import { useAppSelector } from "../../context/hooks";
 
 function Header() {
+  const { columns } = useAppSelector((state) => state.columns);
+
   return (
     <nav className={styles.header}>
       <div className={styles.header__left}>
@@ -15,10 +18,10 @@ function Header() {
         </div>
       </div>
       <div className={styles.header__right}>
-        <button className="">
+        <button className={columns.length > 0 ? "" : styles.dimmed}>
           <img src={Plus} alt="" />
         </button>
-        <img src={Ellipsis} alt="" />
+        <img className={styles.ellipsis} src={Ellipsis} alt="" />
       </div>
     </nav>
   );

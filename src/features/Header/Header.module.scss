@@ -29,6 +29,11 @@
   align-items: center;
   gap: 16px;
 
+  .dimmed {
+    cursor: default;
+    opacity: 0.25;
+  }
+
   button {
     display: flex;
     align-items: center;
@@ -39,5 +44,9 @@
     padding: 10px 18px;
 
     border: none;
+  }
+
+  .ellipsis {
+    cursor: pointer;
   }
 }
