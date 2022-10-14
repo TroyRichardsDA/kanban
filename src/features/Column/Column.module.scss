@@ -1,0 +1,17 @@
+@use "../../styles/variables.scss" as *;
+
+.title {
+  font-size: 12px;
+  display: flex;
+  color: $grey;
+  text-transform: uppercase;
+  line-height: 15px;
+  letter-spacing: 2.4px;
+  gap: 12px;
+}
+
+.circle {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+}
