@@ -14,7 +14,9 @@ export default function Home() {
   return (
     <main className={columns.length > 0 ? styles.home : ""}>
       {columns.length > 0 &&
-        columns.map(({ name, tasks }) => <Column name={name} tasks={tasks} />)}
+        columns.map(({ id, name, tasks }) => (
+          <Column key={id} name={name} tasks={tasks} />
+        ))}
 
       {columns.length === 0 && (
         <div className={styles.empty}>

@@ -17,11 +17,11 @@ export const columnsSlice = createSlice({
       const cols = state.columns;
 
       if (cols.length === 0) {
-        cols.push({ name: "todo" });
+        cols.push({ id: 1, name: "Todo" });
       } else if (cols.length === 1) {
-        cols.push({ name: "doing", tasks: [] });
+        cols.push({ id: 2, name: "Doing", tasks: [] });
       } else if (cols.length === 2) {
-        cols.push({ name: "done", tasks: [] });
+        cols.push({ id: 3, name: "Done", tasks: [] });
       }
     },
   },
