@@ -5,5 +5,5 @@ export interface Task {
   description: string;
   status: string;
   statusListIsOpen: boolean;
-  subtasks?: SubTask[];
+  subtasks: SubTask[];
 }

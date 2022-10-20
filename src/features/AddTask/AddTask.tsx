@@ -3,10 +3,13 @@ import ChevronDown from "../../assets/icon-chevron-down.svg";
 import Cross from "../../assets/icon-cross.svg";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import {
+  removeSubtask,
   toggleStatusesList,
   updateDescription,
   updateStatus,
+  updateSubtasks,
   updateTitle,
+  addSubtask,
 } from "./addTaskContext";
 import { useEffect } from "react";
 interface Props {}
@@ -25,6 +28,29 @@ const AddTask = (props: Props) => {
   function changeStatus(e: string) {
     dispatch(updateStatus(e));
   }
+
+  function addNewSubTask(e: any) {
+    e.preventDefault();
+    dispatch(addSubtask());
+  }
+
+  const activeSubtasks = subtasks.map((subtask) => {
+    const { title, placeholder, id } = subtask;
+
+    return (
+      <div key={id} className={styles.subtask}>
+        <input
+          onChange={(e) =>
+            dispatch(updateSubtasks({ id, title: e.target.value }))
+          }
+          type="text"
+          placeholder={placeholder}
+          value={title}
+        />
+        <img onClick={() => dispatch(removeSubtask(id))} src={Cross} alt="" />
+      </div>
+    );
+  });
 
   const options = columns.map(({ name }, id) => (
     <p
@@ -62,12 +88,14 @@ const AddTask = (props: Props) => {
           </label>
           <label className={styles.label}>
             Subtasks
-            <div className={styles.subtask}>
-              <input type="text" placeholder="e.g. Make coffee" />
-              <img src={Cross} alt="" />
-            </div>
+            {activeSubtasks}
           </label>
-          <button className={styles.addsubtask}>+ Add New Subtask</button>
+          <button
+            onClick={(e) => addNewSubTask(e)}
+            className={styles.addsubtask}
+          >
+            + Add New Subtask
+          </button>
           <label className={styles.label}>
             Status
             <div className={styles.status_container}>
