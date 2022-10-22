@@ -10,19 +10,24 @@ import {
   updateSubtasks,
   updateTitle,
   addSubtask,
+  resetAddTask,
 } from "./addTaskContext";
 import { useEffect } from "react";
+import { Task } from "../../models/ITask";
+import { openAddNewTask } from "../../context/modals";
+import { addTaskToColumn } from "../../context/boards";
 interface Props {}
 
 const AddTask = (props: Props) => {
-  const { columns } = useAppSelector((state) => state.columns);
+  const { boards } = useAppSelector((state) => state.boards);
   const { title, description, subtasks, status, statusListIsOpen } =
     useAppSelector((state) => state.addTask);
+  const currentBoard = boards.find((board) => board.isCurrent)!;
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(updateStatus(columns[0].name));
+    dispatch(updateStatus(currentBoard.columns[0].name));
   }, []);
 
   function changeStatus(e: string) {
@@ -32,6 +37,28 @@ const AddTask = (props: Props) => {
   function addNewSubTask(e: any) {
     e.preventDefault();
     dispatch(addSubtask());
+  }
+
+  function sendNewTask(e: any) {
+    e.preventDefault();
+    const validSubtasks = subtasks.filter((subtask) => subtask.title !== "");
+    const newTask: Task = {
+      title: title,
+      description: description,
+      status: status,
+      statusListIsOpen: false,
+      subtasks: validSubtasks,
+    };
+
+    const filledCorretly = Object.values(newTask).every(
+      (value) => value != null && value !== ""
+    );
+
+    if (filledCorretly) {
+      dispatch(addTaskToColumn({ column: status, task: newTask }));
+      dispatch(openAddNewTask(false));
+      dispatch(resetAddTask());
+    }
   }
 
   const activeSubtasks = subtasks.map((subtask) => {
@@ -52,7 +79,7 @@ const AddTask = (props: Props) => {
     );
   });
 
-  const options = columns.map(({ name }, id) => (
+  const options = currentBoard.columns.map(({ name }, id) => (
     <p
       key={id}
       className={styles.option}
@@ -66,8 +93,7 @@ const AddTask = (props: Props) => {
     <div className={styles.modalBg}>
       <div className={styles.modal}>
         <h3 className={styles.header}>Add New Task</h3>
-
-        <form className={styles.form}>
+        <form onSubmit={(e) => sendNewTask(e)} className={styles.form}>
           <label className={styles.label}>
             Title
             <input

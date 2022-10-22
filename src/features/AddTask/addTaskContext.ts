@@ -1,5 +1,5 @@
-import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
-import { Task } from "../../models/Task";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { Task } from "../../models/ITask";
 import { placeholders } from "../../data/placeholders";
 
 function getRandomPlaceholder() {
@@ -20,20 +20,7 @@ const initialState: Task = {
   description: "",
   status: "",
   statusListIsOpen: false,
-  subtasks: [
-    {
-      id: nanoid(),
-      title: "",
-      isCompleted: false,
-      placeholder: placeholders[getRandomPlaceholder()],
-    },
-    {
-      id: nanoid(),
-      title: "",
-      isCompleted: false,
-      placeholder: placeholders[getRandomPlaceholder()],
-    },
-  ],
+  subtasks: [createNewSubtask(), createNewSubtask()],
 };
 
 export const addTaskContextSlice = createSlice({
@@ -60,7 +47,11 @@ export const addTaskContextSlice = createSlice({
       state.subtasks.push(createNewSubtask());
     },
     removeSubtask: (state, action) => {
-      state.subtasks.splice(action.payload, 1);
+      const subtask = state.subtasks.find(
+        (subtask) => subtask.id === action.payload
+      );
+      const index = state.subtasks.indexOf(subtask!);
+      state.subtasks.splice(index, 1);
     },
     updateStatus: (state, action) => {
       state.status = action.payload;
@@ -68,6 +59,7 @@ export const addTaskContextSlice = createSlice({
     toggleStatusesList: (state) => {
       state.statusListIsOpen = !state.statusListIsOpen;
     },
+    resetAddTask: () => initialState,
   },
 });
 
@@ -79,6 +71,7 @@ export const {
   toggleStatusesList,
   addSubtask,
   removeSubtask,
+  resetAddTask,
 } = addTaskContextSlice.actions;
 
 export default addTaskContextSlice.reducer;

@@ -1,4 +1,4 @@
-import { Task } from "../../models/Task";
+import { Task } from "../../models/ITask";
 
 type Props = {
   task: Task;

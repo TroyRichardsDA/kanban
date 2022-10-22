@@ -1,4 +1,4 @@
-import { SubTask } from "./Subtask";
+import { SubTask } from "./ISubtask";
 
 export interface Task {
   title: string;

@@ -1,5 +1,5 @@
 import Card from "../../components/Card/Card";
-import { Task } from "../../models/Task";
+import { Task } from "../../models/ITask";
 import styles from "./Column.module.scss";
 
 interface Props {
@@ -21,8 +21,8 @@ const Column = (props: Props) => {
         </h2>
       </div>
       <div>
-        {tasks?.map((task) => (
-          <Card task={task} />
+        {tasks?.map((task, id) => (
+          <Card key={id} task={task} />
         ))}
       </div>
     </section>
