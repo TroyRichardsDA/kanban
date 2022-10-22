@@ -1,5 +1,5 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
-import { Task } from "../../models/ITask";
+import { ITask } from "../../models/ITask";
 import { placeholders } from "../../data/placeholders";
 
 function getRandomPlaceholder() {
@@ -15,7 +15,7 @@ function createNewSubtask() {
   };
 }
 
-const initialState: Task = {
+const initialState: ITask = {
   title: "",
   description: "",
   status: "",

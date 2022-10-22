@@ -1,8 +1,8 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
-import { Board } from "../models/IBoard";
+import { createSlice } from "@reduxjs/toolkit";
+import { IBoard } from "../models/IBoard";
 
 interface BoardsState {
-  boards: Board[];
+  boards: IBoard[];
 }
 
 const initialState: BoardsState = {
@@ -14,7 +14,7 @@ export const boardsSlice = createSlice({
   initialState,
   reducers: {
     addNewBorad: (state, action) => {
-      const newBoard: Board = {
+      const newBoard: IBoard = {
         name: action.payload,
         columns: [],
         isCurrent: false,
@@ -23,7 +23,6 @@ export const boardsSlice = createSlice({
     },
 
     addColumnToBoard: (state, action) => {
-      const currentBoard: Board = action.payload;
       state.boards.map((board) => {
         if (board.isCurrent) {
           const cols = board.columns;
@@ -35,6 +34,9 @@ export const boardsSlice = createSlice({
           } else if (cols.length === 2) {
             cols.push({ id: 3, name: "Done", tasks: [] });
           }
+          return board;
+        } else {
+          return board;
         }
       });
     },

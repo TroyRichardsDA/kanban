@@ -1,7 +1,7 @@
-import { Task } from "./ITask";
+import { ITask } from "./ITask";
 
-export interface Column {
+export interface IColumn {
   id: number;
   name: string;
-  tasks: Task[];
+  tasks: ITask[];
 }

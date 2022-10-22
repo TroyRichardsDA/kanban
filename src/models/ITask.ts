@@ -1,9 +1,9 @@
-import { SubTask } from "./ISubtask";
+import { ISubTask } from "./ISubtask";
 
-export interface Task {
+export interface ITask {
   title: string;
   description: string;
   status: string;
   statusListIsOpen: boolean;
-  subtasks: SubTask[];
+  subtasks: ISubTask[];
 }

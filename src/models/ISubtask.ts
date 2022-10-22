@@ -1,4 +1,4 @@
-export interface SubTask {
+export interface ISubTask {
   id: string;
   title: string;
   placeholder: string;

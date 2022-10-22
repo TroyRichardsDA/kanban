@@ -1,28 +1,28 @@
-import Card from "../../components/Card/Card";
-import { Task } from "../../models/ITask";
+import { ITask } from "../../models/ITask";
 import styles from "./Column.module.scss";
+import Task from "../Task/Task";
 
 interface Props {
   name: string;
-  tasks?: Task[];
+  tasks?: ITask[];
 }
 
 const Column = (props: Props) => {
   const { name, tasks } = props;
   const backgroundColor =
-    name === "todo" ? "#49C4E5" : name === "doing" ? "$primary" : "#67E2AE";
+    name === "Todo" ? "#49C4E5" : name === "Doing" ? "$primary" : "#67E2AE";
 
   return (
     <section>
-      <div className={styles.title}>
+      <div className={styles.header}>
         <div style={{ backgroundColor }} className={styles.circle}></div>
-        <h2>
+        <h2 className={styles.title}>
           {name} {!tasks ? "" : `(${tasks?.length})`}{" "}
         </h2>
       </div>
-      <div>
+      <div className={styles.tasks}>
         {tasks?.map((task, id) => (
-          <Card key={id} task={task} />
+          <Task key={id} task={task} />
         ))}
       </div>
     </section>

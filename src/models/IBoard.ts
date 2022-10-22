@@ -1,7 +1,7 @@
-import { Column } from "./IColumn";
+import { IColumn } from "./IColumn";
 
-export interface Board {
+export interface IBoard {
   name: string;
-  columns: Column[];
+  columns: IColumn[];
   isCurrent: boolean;
 }

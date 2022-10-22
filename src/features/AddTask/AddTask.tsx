@@ -13,9 +13,10 @@ import {
   resetAddTask,
 } from "./addTaskContext";
 import { useEffect } from "react";
-import { Task } from "../../models/ITask";
+import { ITask } from "../../models/ITask";
 import { openAddNewTask } from "../../context/modals";
 import { addTaskToColumn } from "../../context/boards";
+import { ISubTask } from "../../models/ISubtask";
 interface Props {}
 
 const AddTask = (props: Props) => {
@@ -41,8 +42,10 @@ const AddTask = (props: Props) => {
 
   function sendNewTask(e: any) {
     e.preventDefault();
-    const validSubtasks = subtasks.filter((subtask) => subtask.title !== "");
-    const newTask: Task = {
+    const validSubtasks = subtasks.filter(
+      (subtask: ISubTask) => subtask.title !== ""
+    );
+    const newTask: ITask = {
       title: title,
       description: description,
       status: status,
@@ -61,7 +64,7 @@ const AddTask = (props: Props) => {
     }
   }
 
-  const activeSubtasks = subtasks.map((subtask) => {
+  const activeSubtasks = subtasks.map((subtask: ISubTask) => {
     const { title, placeholder, id } = subtask;
 
     return (

@@ -1,6 +1,6 @@
 import { addColumnToBoard } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
-import Column from "../Column/Column";
+import Column from "../../components/Column/Column";
 import styles from "./Board.module.scss";
 type Props = {};
 

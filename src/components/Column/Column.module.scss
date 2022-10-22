@@ -1,13 +1,18 @@
 @use "../../styles/variables.scss" as *;
 
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 12px;
+}
+
 .title {
   font-size: 12px;
-  display: flex;
   color: $grey;
   text-transform: uppercase;
   line-height: 15px;
   letter-spacing: 2.4px;
-  gap: 12px;
   font-weight: 700;
 }
 
@@ -15,4 +20,9 @@
   height: 15px;
   width: 15px;
   border-radius: 50%;
+}
+
+.tasks {
+  display: grid;
+  gap: 20px;
 }
