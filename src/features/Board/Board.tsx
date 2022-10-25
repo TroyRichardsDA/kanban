@@ -26,7 +26,10 @@ const Board = (props: Props) => {
           <p>This board is empty. Create a new column to get started.</p>
           <button onClick={() => addtoColumns()}> + Add New Column </button>
         </div>
-      )}{" "}
+      )}
+      <div onClick={() => addtoColumns()} className={styles.new_column}>
+        <p>+ New Column</p>
+      </div>
     </main>
   );
 };

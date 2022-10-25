@@ -4,14 +4,18 @@ export const modalsSlice = createSlice({
   name: "modals",
   initialState: {
     addTaskIsOpen: false,
+    viewTaskIsOpen: false,
   },
   reducers: {
-    openAddNewTask: (state, action) => {
+    toggleAddNewTask: (state, action) => {
       state.addTaskIsOpen = action.payload;
+    },
+    toggleViewTask: (state, action) => {
+      state.viewTaskIsOpen = action.payload;
     },
   },
 });
 
-export const { openAddNewTask } = modalsSlice.actions;
+export const { toggleAddNewTask, toggleViewTask } = modalsSlice.actions;
 
 export default modalsSlice.reducer;

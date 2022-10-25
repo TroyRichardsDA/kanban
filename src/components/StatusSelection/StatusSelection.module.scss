@@ -1,0 +1,35 @@
+@use "../../styles/variables.scss" as *;
+
+.status_container {
+  position: relative;
+
+  .current_option:hover,
+  img {
+    cursor: pointer;
+  }
+
+  .open {
+    border-color: $primary;
+  }
+
+  img {
+    position: absolute;
+    top: 18px;
+    right: 12px;
+  }
+}
+
+.status_options {
+  width: 100%;
+  padding: 8px 16px;
+  color: $grey !important;
+}
+
+.option {
+  width: 100%;
+
+  &:hover {
+    color: black;
+    cursor: pointer;
+  }
+}

@@ -1,5 +1,9 @@
 @use "../../styles/variables.scss" as *;
 
+.column {
+  min-width: 280px;
+}
+
 .header {
   display: flex;
   align-items: center;

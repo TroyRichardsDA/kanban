@@ -4,7 +4,7 @@ import Ellipsis from "../../assets/icon-vertical-ellipsis.svg";
 import Plus from "../../assets/icon-add-task-mobile.svg";
 import styles from "./Header.module.scss";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
-import { openAddNewTask } from "../../context/modals";
+import { toggleAddNewTask } from "../../context/modals";
 
 function Header() {
   const { boards } = useAppSelector((state) => state.boards);
@@ -23,7 +23,7 @@ function Header() {
       </div>
       <div className={styles.header__right}>
         <button
-          onClick={() => dispatch(openAddNewTask(true))}
+          onClick={() => dispatch(toggleAddNewTask(true))}
           disabled={noColumns ? true : false}
           className={noColumns ? styles.dimmed : ""}
         >

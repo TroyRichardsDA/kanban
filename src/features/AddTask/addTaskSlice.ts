@@ -16,6 +16,7 @@ function createNewSubtask() {
 }
 
 const initialState: ITask = {
+  id: "",
   title: "",
   description: "",
   status: "",
@@ -23,10 +24,13 @@ const initialState: ITask = {
   subtasks: [createNewSubtask(), createNewSubtask()],
 };
 
-export const addTaskContextSlice = createSlice({
+export const addTaskSlice = createSlice({
   name: "addTask",
   initialState,
   reducers: {
+    createID: (state, action) => {
+      state.id = action.payload;
+    },
     updateTitle: (state, action) => {
       state.title = action.payload;
     },
@@ -72,6 +76,7 @@ export const {
   addSubtask,
   removeSubtask,
   resetAddTask,
-} = addTaskContextSlice.actions;
+  createID,
+} = addTaskSlice.actions;
 
-export default addTaskContextSlice.reducer;
+export default addTaskSlice.reducer;

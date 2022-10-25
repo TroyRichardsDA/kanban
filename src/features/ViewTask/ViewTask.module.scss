@@ -1,0 +1,53 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/global.scss" as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  width: 90%;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 23px;
+}
+
+.description {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 23px;
+  color: $grey;
+}
+
+.subtitle {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  color: $grey;
+}
+
+.subtasks {
+  margin-top: 16px;
+  display: grid;
+  gap: 8px;
+}
+
+.subtask {
+  background-color: $lightBG;
+  border-radius: 4px;
+  padding: 14px 12px;
+  display: flex;
+  gap: 16px;
+
+  label {
+    font-size: 700;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
+.status {
+  @include label;
+}

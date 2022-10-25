@@ -10,10 +10,10 @@ interface Props {
 const Column = (props: Props) => {
   const { name, tasks } = props;
   const backgroundColor =
-    name === "Todo" ? "#49C4E5" : name === "Doing" ? "$primary" : "#67E2AE";
+    name === "Todo" ? "#49C4E5" : name === "Doing" ? "#635fc7a" : "#67E2AE";
 
   return (
-    <section>
+    <section className={styles.column}>
       <div className={styles.header}>
         <div style={{ backgroundColor }} className={styles.circle}></div>
         <h2 className={styles.title}>

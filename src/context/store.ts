@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import modalsReducer from "./modals";
-import addTaskContextReducer from "../features/AddTask/addTaskContext";
+import addTaskReducer from "../features/AddTask/addTaskSlice";
 import boardsReducer from "./boards";
 
 export const store = configureStore({
   reducer: {
     modals: modalsReducer,
-    addTask: addTaskContextReducer,
+    addTask: addTaskReducer,
     boards: boardsReducer,
   },
 });
