@@ -6,7 +6,7 @@ type Props = {
   status: string;
   statusListIsOpen: boolean;
   columns: IColumn[];
-  changeStatus: (params: string) => void;
+  changeStatus: (e: string) => void;
   toggleStatus: () => void;
 };
 

@@ -15,6 +15,17 @@
   @include label;
 }
 
+.subtask {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+
+  input {
+    flex: 2;
+  }
+}
+
 .addsubtask {
   color: $primary;
   font-weight: 700;

@@ -10,7 +10,7 @@ interface Props {
 const Column = (props: Props) => {
   const { name, tasks } = props;
   const backgroundColor =
-    name === "Todo" ? "#49C4E5" : name === "Doing" ? "#635fc7a" : "#67E2AE";
+    name === "Todo" ? "#49C4E5" : name === "Doing" ? "#635fc7" : "#67E2AE";
 
   return (
     <section className={styles.column}>
@@ -22,7 +22,7 @@ const Column = (props: Props) => {
       </div>
       <div className={styles.tasks}>
         {tasks?.map((task, id) => (
-          <Task key={id} task={task} />
+          <Task key={task.id} task={task} />
         ))}
       </div>
     </section>

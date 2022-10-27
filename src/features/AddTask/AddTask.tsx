@@ -1,5 +1,4 @@
 import styles from "./AddTask.module.scss";
-import ChevronDown from "../../assets/icon-chevron-down.svg";
 import Cross from "../../assets/icon-cross.svg";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import {
@@ -21,6 +20,7 @@ import { ISubTask } from "../../models/ISubtask";
 import Modal from "../../components/Modals/Modal";
 import StatusSelection from "../../components/StatusSelection/StatusSelection";
 import { nanoid } from "@reduxjs/toolkit";
+import EditableList from "../../components/EditableList/EditableList";
 
 const AddTask = () => {
   const { boards } = useAppSelector((state) => state.boards);
@@ -88,18 +88,23 @@ const AddTask = () => {
   const activeSubtasks = subtasks.map((subtask: ISubTask) => {
     const { title, placeholder, id } = subtask;
 
+    function updateTask(updated: string) {
+      dispatch(updateSubtasks({ id, title: updated }));
+    }
+
+    function removeTask(subtaskId: string) {
+      dispatch(removeSubtask(subtaskId));
+    }
+
     return (
-      <div key={id} className={styles.subtask}>
-        <input
-          onChange={(e) =>
-            dispatch(updateSubtasks({ id, title: e.target.value }))
-          }
-          type="text"
-          placeholder={placeholder}
-          value={title}
-        />
-        <img onClick={() => dispatch(removeSubtask(id))} src={Cross} alt="" />
-      </div>
+      <EditableList
+        key={id}
+        id={id}
+        updateText={updateTask}
+        remove={removeTask}
+        text={title}
+        placeholder={placeholder}
+      />
     );
   });
 
