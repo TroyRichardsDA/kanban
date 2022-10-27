@@ -22,13 +22,19 @@ function Task(props: Props) {
     dispatch(toggleViewTask(true));
   }
 
+  function preventChild(e: any) {
+    e.stopPropagation();
+  }
+
   return (
     <div onClick={() => viewTask()} className={styles.task}>
       <h3 className={styles.title}>{title}</h3>
       <p className={styles.subtasks}>
         {subtasksComplete} of {subtasks.length} subtasks
       </p>
-      {viewTaskIsOpen && <ViewTask task={task} />}
+      <div onClick={(e) => preventChild(e)}>
+        {viewTaskIsOpen && <ViewTask task={task} />}
+      </div>
     </div>
   );
 }

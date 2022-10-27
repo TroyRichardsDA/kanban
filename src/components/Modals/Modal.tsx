@@ -3,12 +3,21 @@ import styles from "./Modal.module.scss";
 
 type Props = {
   children: ReactNode;
+  toggle: () => void;
 };
 
-function Modal({ children }: Props) {
+function Modal(props: Props) {
+  const { children, toggle } = props;
+
+  function preventChild(e: any) {
+    e.stopPropagation();
+  }
+
   return (
-    <div className={styles.modalBg}>
-      <div className={styles.modal}>{children}</div>
+    <div onClick={toggle} className={styles.modalBg}>
+      <div onClick={(e) => preventChild(e)} className={styles.modal}>
+        {children}
+      </div>
     </div>
   );
 }

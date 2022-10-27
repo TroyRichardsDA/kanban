@@ -21,9 +21,8 @@ import { ISubTask } from "../../models/ISubtask";
 import Modal from "../../components/Modals/Modal";
 import StatusSelection from "../../components/StatusSelection/StatusSelection";
 import { nanoid } from "@reduxjs/toolkit";
-interface Props {}
 
-const AddTask = (props: Props) => {
+const AddTask = () => {
   const { boards } = useAppSelector((state) => state.boards);
   const { title, description, subtasks, status, statusListIsOpen, id } =
     useAppSelector((state) => state.addTask);
@@ -47,6 +46,10 @@ const AddTask = (props: Props) => {
   function addNewSubTask(e: any) {
     e.preventDefault();
     dispatch(addSubtask());
+  }
+
+  function closeModal() {
+    dispatch(toggleAddNewTask(false));
   }
 
   function sendNewTask(e: any) {
@@ -93,7 +96,7 @@ const AddTask = (props: Props) => {
   });
 
   return (
-    <Modal>
+    <Modal toggle={closeModal}>
       <h3 className={styles.header}>Add New Task</h3>
       <form onSubmit={(e) => sendNewTask(e)} className={styles.form}>
         <label className={styles.label}>

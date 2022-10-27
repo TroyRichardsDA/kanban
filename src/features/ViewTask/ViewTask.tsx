@@ -3,6 +3,7 @@ import Modal from "../../components/Modals/Modal";
 import StatusSelection from "../../components/StatusSelection/StatusSelection";
 import { changeTaskStatus, toggleTaskStatusList } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
+import { toggleViewTask } from "../../context/modals";
 import { ITask } from "../../models/ITask";
 import styles from "./ViewTask.module.scss";
 
@@ -28,6 +29,10 @@ function ViewTask(props: Props) {
     </div>
   ));
 
+  function closeModal() {
+    dispatch(toggleViewTask(false));
+  }
+
   function changeStatus(newStatus: string) {
     dispatch(changeTaskStatus({ newStatus, prev: status, task }));
   }
@@ -37,7 +42,7 @@ function ViewTask(props: Props) {
   }
 
   return (
-    <Modal>
+    <Modal toggle={closeModal}>
       <div className={styles.header}>
         <h2 className={styles.title}>{title}</h2>
         <img src={Ellipsis} alt="" />
