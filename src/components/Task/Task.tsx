@@ -1,5 +1,5 @@
+import { toggleViewTask } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
-import { toggleViewTask } from "../../context/modals";
 import ViewTask from "../../features/ViewTask/ViewTask";
 import { ITask } from "../../models/ITask";
 import styles from "./Task.module.scss";
@@ -12,14 +12,14 @@ function Task(props: Props) {
   const { task } = props;
   const { viewTaskIsOpen } = useAppSelector((state) => state.modals);
 
-  const { title, subtasks } = task;
+  const { title, subtasks, status, viewTask } = task;
   const dispatch = useAppDispatch();
   const subtasksComplete = subtasks.filter(
     (subtask) => subtask.isCompleted
   ).length;
 
-  function viewTask() {
-    dispatch(toggleViewTask(true));
+  function openTask() {
+    dispatch(toggleViewTask({ task, status, bool: true }));
   }
 
   function preventChild(e: any) {
@@ -27,13 +27,13 @@ function Task(props: Props) {
   }
 
   return (
-    <div onClick={() => viewTask()} className={styles.task}>
+    <div onClick={() => openTask()} className={styles.task}>
       <h3 className={styles.title}>{title}</h3>
       <p className={styles.subtasks}>
         {subtasksComplete} of {subtasks.length} subtasks
       </p>
       <div onClick={(e) => preventChild(e)}>
-        {viewTaskIsOpen && <ViewTask task={task} />}
+        {viewTask && <ViewTask task={task} />}
       </div>
     </div>
   );

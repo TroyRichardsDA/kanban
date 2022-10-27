@@ -6,5 +6,6 @@ export interface ITask {
   description: string;
   status: string;
   statusListIsOpen: boolean;
+  viewTask: boolean;
   subtasks: ISubTask[];
 }

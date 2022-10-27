@@ -1,9 +1,12 @@
 import Ellipsis from "../../assets/icon-vertical-ellipsis.svg";
 import Modal from "../../components/Modals/Modal";
 import StatusSelection from "../../components/StatusSelection/StatusSelection";
-import { changeTaskStatus, toggleTaskStatusList } from "../../context/boards";
+import {
+  changeTaskStatus,
+  toggleTaskStatusList,
+  toggleViewTask,
+} from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
-import { toggleViewTask } from "../../context/modals";
 import { ITask } from "../../models/ITask";
 import styles from "./ViewTask.module.scss";
 
@@ -30,7 +33,7 @@ function ViewTask(props: Props) {
   ));
 
   function closeModal() {
-    dispatch(toggleViewTask(false));
+    dispatch(toggleViewTask({ task, status, bool: false }));
   }
 
   function changeStatus(newStatus: string) {

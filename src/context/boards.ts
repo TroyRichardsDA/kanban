@@ -67,6 +67,12 @@ export const boardsSlice = createSlice({
       });
     },
 
+    toggleViewTask: (state, action) => {
+      const { task, status, bool } = action.payload;
+      const currentTask = findCurrentTask(state, status, task);
+      currentTask.viewTask = bool;
+    },
+
     changeTaskStatus: (state, action) => {
       const { newStatus, prev, task } = action.payload;
       const currentBoard = findCurrentBoard(state);
@@ -98,6 +104,7 @@ export const {
   addTaskToColumn,
   changeTaskStatus,
   toggleTaskStatusList,
+  toggleViewTask,
 } = boardsSlice.actions;
 
 export default boardsSlice.reducer;

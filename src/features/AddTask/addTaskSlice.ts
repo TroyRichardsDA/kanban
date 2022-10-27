@@ -21,6 +21,7 @@ const initialState: ITask = {
   description: "",
   status: "",
   statusListIsOpen: false,
+  viewTask: false,
   subtasks: [createNewSubtask(), createNewSubtask()],
 };
 

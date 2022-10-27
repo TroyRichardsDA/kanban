@@ -24,8 +24,15 @@ import { nanoid } from "@reduxjs/toolkit";
 
 const AddTask = () => {
   const { boards } = useAppSelector((state) => state.boards);
-  const { title, description, subtasks, status, statusListIsOpen, id } =
-    useAppSelector((state) => state.addTask);
+  const {
+    title,
+    description,
+    subtasks,
+    status,
+    statusListIsOpen,
+    id,
+    viewTask,
+  } = useAppSelector((state) => state.addTask);
   const currentBoard = boards.find((board) => board.isCurrent)!;
 
   const dispatch = useAppDispatch();
@@ -58,11 +65,12 @@ const AddTask = () => {
       (subtask: ISubTask) => subtask.title !== ""
     );
     const newTask: ITask = {
-      id: id,
-      title: title,
-      description: description,
-      status: status,
+      id,
+      title,
+      description,
+      status,
       statusListIsOpen: false,
+      viewTask,
       subtasks: validSubtasks,
     };
 
