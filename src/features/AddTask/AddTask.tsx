@@ -18,9 +18,9 @@ import { toggleAddNewTask } from "../../context/modals";
 import { addTaskToColumn } from "../../context/boards";
 import { ISubTask } from "../../models/ISubtask";
 import Modal from "../../components/Modals/Modal";
-import StatusSelection from "../../components/StatusSelection/StatusSelection";
 import { nanoid } from "@reduxjs/toolkit";
 import EditableList from "../../components/EditableList/EditableList";
+import TaskTemplate from "../../components/TaskTemplate/TaskTemplate";
 
 const AddTask = () => {
   const { boards } = useAppSelector((state) => state.boards);
@@ -85,6 +85,14 @@ const AddTask = () => {
     }
   }
 
+  function handleTitle(e: string) {
+    dispatch(updateTitle(e));
+  }
+
+  function handleDescription(e: string) {
+    dispatch(updateDescription(e));
+  }
+
   const activeSubtasks = subtasks.map((subtask: ISubTask) => {
     const { title, placeholder, id } = subtask;
 
@@ -110,48 +118,20 @@ const AddTask = () => {
 
   return (
     <Modal toggle={closeModal}>
-      <h3 className={styles.header}>Add New Task</h3>
-      <form onSubmit={(e) => sendNewTask(e)} className={styles.form}>
-        <label className={styles.label}>
-          Title
-          <input
-            onChange={(e) => dispatch(updateTitle(e.target.value))}
-            value={title}
-            type="text"
-            placeholder="e.g Take coffee break"
-          />
-        </label>
-        <label className={styles.label}>
-          Description
-          <textarea
-            onChange={(e) => dispatch(updateDescription(e.target.value))}
-            value={description}
-            rows={5}
-            placeholder="e.g. It's always good to take a break. This 15 minute break will recharge the batteries a litte."
-          />
-        </label>
-        <label className={styles.label}>
-          Subtasks
-          {activeSubtasks}
-        </label>
-        <button onClick={(e) => addNewSubTask(e)} className={styles.addsubtask}>
-          + Add New Subtask
-        </button>
-        <label className={styles.label}>
-          Status
-          <StatusSelection
-            status={status}
-            statusListIsOpen={statusListIsOpen}
-            columns={currentBoard.columns}
-            changeStatus={changeStatus}
-            toggleStatus={toggleStatus}
-          />
-        </label>
-
-        <button type="submit" className={styles.button}>
-          Create Task
-        </button>
-      </form>
+      <TaskTemplate
+        heading="Add New Task"
+        title={title}
+        status={status}
+        statusListIsOpen={statusListIsOpen}
+        columns={currentBoard.columns}
+        subtaskList={activeSubtasks}
+        changeStatus={changeStatus}
+        toggleStatus={toggleStatus}
+        updateTitle={handleTitle}
+        updateDescription={handleDescription}
+        addNewSubtask={addNewSubTask}
+        sendTask={sendNewTask}
+      />
     </Modal>
   );
 };

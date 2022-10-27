@@ -1,13 +1,16 @@
+import { ReactNode } from "react";
 import { IColumn } from "../../models/IColumn";
 import Modal from "../Modals/Modal";
 import StatusSelection from "../StatusSelection/StatusSelection";
 import styles from "./TaskTemplate.module.scss";
 
 interface Props {
+  heading: string;
   title: string;
   status: string;
   statusListIsOpen: boolean;
   columns: IColumn[];
+  subtaskList: ReactNode;
   changeStatus: (e: string) => void;
   toggleStatus: () => void;
   updateTitle: (e: string) => void;
@@ -17,7 +20,8 @@ interface Props {
 }
 
 function TaskTemplate(props: Props) {
-  const { title, status, statusListIsOpen, columns } = props;
+  const { heading, title, status, statusListIsOpen, columns, subtaskList } =
+    props;
   const {
     updateTitle,
     updateDescription,
@@ -31,7 +35,7 @@ function TaskTemplate(props: Props) {
 
   return (
     <Modal toggle={nothing}>
-      <h3 className={styles.header}>{title}</h3>
+      <h3 className={styles.header}>{heading}</h3>
       <form className={styles.form} onSubmit={(e) => sendTask(e)}>
         <label className={styles.label}>
           Title
@@ -50,7 +54,10 @@ function TaskTemplate(props: Props) {
             placeholder="e.g. It's always good to take a break."
           />
         </label>
-        <label className={styles.label}>Subtasks</label>
+        <label className={styles.label}>
+          Subtasks
+          {subtaskList}
+        </label>
         <button className={styles.addsubtask} onClick={(e) => addNewSubtask(e)}>
           + Add New Subtask
         </button>
