@@ -7,8 +7,19 @@ type Props = {};
 
 const Board = (props: Props) => {
   const { boards } = useAppSelector((state) => state.boards);
+  const { deleteTypeIsOpen, passedData } = useAppSelector(
+    (state) => state.modals
+  );
   const currentBoard = boards.find((board) => board.isCurrent === true)!;
   const boardColumnsLength = currentBoard.columns.length;
+
+  function typeCheck() {
+    if (passedData.subtasks) {
+      return "task";
+    } else {
+      return "board";
+    }
+  }
 
   const dispatch = useAppDispatch();
 
@@ -31,6 +42,9 @@ const Board = (props: Props) => {
       <div onClick={() => addtoColumns()} className={styles.new_column}>
         <p>+ New Column</p>
       </div>
+      {deleteTypeIsOpen && (
+        <DeleteType title={passedData.title} type={typeCheck()} />
+      )}
     </main>
   );
 };

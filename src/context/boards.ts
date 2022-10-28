@@ -69,6 +69,10 @@ export const boardsSlice = createSlice({
 
     deleteTask: (state) => {},
 
+    passTask: (_, action) => {
+      return action.payload;
+    },
+
     toggleViewTask: (state, action) => {
       const { task, status, bool } = action.payload;
       const currentTask = findCurrentTask(state, status, task);

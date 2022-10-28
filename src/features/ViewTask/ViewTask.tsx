@@ -9,6 +9,7 @@ import {
   updateSubTaskIsComplete,
 } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
+import { populateData, toggleDeleteModal } from "../../context/modals";
 import { ITask } from "../../models/ITask";
 import DeleteType from "../DeleteType/DeleteType";
 import styles from "./ViewTask.module.scss";
@@ -20,6 +21,7 @@ interface Props {
 function ViewTask(props: Props) {
   const { task } = props;
   const { title, subtasks, description, status, statusListIsOpen } = task;
+  const { deleteTypeIsOpen } = useAppSelector((state) => state.modals);
   const dispatch = useAppDispatch();
 
   const currentBoardColumns = useAppSelector(
@@ -74,7 +76,11 @@ function ViewTask(props: Props) {
     dispatch(toggleTaskStatusList({ task, status }));
   }
 
-  function deleteTask() {}
+  function openDeleteModal() {
+    dispatch(toggleDeleteModal(true));
+    dispatch(populateData(task));
+    closeModal();
+  }
 
   function editTask() {}
 
@@ -83,7 +89,11 @@ function ViewTask(props: Props) {
       <div className={styles.header}>
         <h2 className={styles.title}>{title}</h2>
         <img src={Ellipsis} alt="" />
-        <MiniModal editType={editTask} deleteType={deleteTask} type="Task" />
+        <MiniModal
+          editType={editTask}
+          deleteType={openDeleteModal}
+          type="Task"
+        />
       </div>
       <p className={styles.description}>{description}</p>
       <div>
@@ -102,7 +112,6 @@ function ViewTask(props: Props) {
           toggleStatus={toggleStatusList}
         />
       </div>
-      <DeleteType title={title} type="task" />
     </Modal>
   );
 }
