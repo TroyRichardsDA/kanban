@@ -34,12 +34,22 @@
   gap: 8px;
 }
 
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
 .subtask {
   background-color: $lightBG;
   border-radius: 4px;
   padding: 14px 12px;
   display: flex;
   gap: 16px;
+
+  .checkbox {
+    cursor: pointer;
+    accent-color: $primary;
+  }
 
   label {
     font-size: 700;

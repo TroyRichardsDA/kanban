@@ -1,5 +1,3 @@
-import styles from "./AddTask.module.scss";
-import Cross from "../../assets/icon-cross.svg";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import {
   removeSubtask,

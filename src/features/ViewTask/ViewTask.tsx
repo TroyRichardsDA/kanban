@@ -5,6 +5,7 @@ import {
   changeTaskStatus,
   toggleTaskStatusList,
   toggleViewTask,
+  updateSubTaskIsComplete,
 } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import { ITask } from "../../models/ITask";
@@ -16,21 +17,46 @@ interface Props {
 
 function ViewTask(props: Props) {
   const { task } = props;
+  const { title, subtasks, description, status, statusListIsOpen } = task;
+  const dispatch = useAppDispatch();
+
   const currentBoardColumns = useAppSelector(
     (state) => state.boards
   ).boards.find((board) => board.isCurrent)?.columns!;
-  const { title, subtasks, description, status, statusListIsOpen } = task;
+
   const subtasksComplete = subtasks.filter(
     (subtask) => subtask.isCompleted
   ).length;
-  const dispatch = useAppDispatch();
 
-  const subtasksList = subtasks.map((subtask, id) => (
-    <div className={styles.subtask} key={id}>
-      <input type="checkbox" />
-      <label>{subtask.title}</label>
-    </div>
-  ));
+  const subtasksList = subtasks.map((subtask, id) => {
+    const { isCompleted } = subtask;
+
+    function updateCompleted(e: any) {
+      if (e.target.checked) {
+        dispatch(
+          updateSubTaskIsComplete({ task, status, id: subtask.id, bool: true })
+        );
+      } else {
+        dispatch(
+          updateSubTaskIsComplete({ task, status, id: subtask.id, bool: false })
+        );
+      }
+    }
+
+    return (
+      <div className={styles.subtask} key={id}>
+        <input
+          onChange={(e) => updateCompleted(e)}
+          type="checkbox"
+          checked={isCompleted}
+          className={styles.checkbox}
+        />
+        <label className={`${isCompleted && styles.completed}`}>
+          {subtask.title}
+        </label>
+      </div>
+    );
+  });
 
   function closeModal() {
     dispatch(toggleViewTask({ task, status, bool: false }));
