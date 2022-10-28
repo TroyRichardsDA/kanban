@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   addTaskIsOpen: false,
   deleteTypeIsOpen: false,
+  taskMiniModalIsOpen: false,
+  boardMiniModalIsOpen: false,
   passedData: {} as any,
 };
 
@@ -13,6 +15,10 @@ export const modalsSlice = createSlice({
     toggleAddNewTask: (state, action) => {
       state.addTaskIsOpen = action.payload;
     },
+    toggleTaskMiniModal: (state) => {
+      state.taskMiniModalIsOpen = !state.taskMiniModalIsOpen;
+    },
+    toggleBoardMiniModal: (state, action) => {},
     toggleDeleteModal: (state, action) => {
       state.deleteTypeIsOpen = action.payload;
     },
@@ -28,6 +34,8 @@ export const {
   toggleDeleteModal,
   populateData,
   resetModalsSlice,
+  toggleTaskMiniModal,
+  toggleBoardMiniModal,
 } = modalsSlice.actions;
 
 export default modalsSlice.reducer;

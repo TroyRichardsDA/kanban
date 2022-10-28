@@ -7,12 +7,14 @@ interface Props {
 
 const MiniModal = (props: Props) => {
   const { type } = props;
-  const { deleteType } = props;
+  const { deleteType, editType } = props;
 
   return (
     <div className={styles.modalBG}>
-      <p className={styles.edit}>Edit {type}</p>
-      <p onClick={() => deleteType()} className={styles.delete}>
+      <p onClick={editType} className={styles.edit}>
+        Edit {type}
+      </p>
+      <p onClick={deleteType} className={styles.delete}>
         Delete {type}
       </p>
     </div>

@@ -1,4 +1,5 @@
 import { createSlice, current } from "@reduxjs/toolkit";
+import { nanoid } from "nanoid";
 import { IBoard } from "../models/IBoard";
 import { ITask } from "../models/ITask";
 
@@ -6,8 +7,19 @@ interface BoardsState {
   boards: IBoard[];
 }
 
+function createBoard() {
+  return {
+    id: nanoid(),
+    name: "Platform Launch",
+    columns: [],
+    isCurrent: false,
+  };
+}
+
 const initialState: BoardsState = {
-  boards: [{ name: "Platform Launch", columns: [], isCurrent: true }],
+  boards: [
+    { id: nanoid(), name: "Platform Launch", columns: [], isCurrent: true },
+  ],
 };
 
 function findCurrentBoard(state: BoardsState) {
@@ -27,6 +39,7 @@ export const boardsSlice = createSlice({
   reducers: {
     addNewBorad: (state, action) => {
       const newBoard: IBoard = {
+        id: "12mlksdf",
         name: action.payload,
         columns: [],
         isCurrent: false,
