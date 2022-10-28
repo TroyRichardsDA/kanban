@@ -25,8 +25,8 @@ const initialState: ITask = {
   subtasks: [createNewSubtask(), createNewSubtask()],
 };
 
-export const addTaskSlice = createSlice({
-  name: "addTask",
+export const taskEditorSlice = createSlice({
+  name: "taskEditor",
   initialState,
   reducers: {
     createID: (state, action) => {
@@ -64,6 +64,9 @@ export const addTaskSlice = createSlice({
     toggleStatusesList: (state) => {
       state.statusListIsOpen = !state.statusListIsOpen;
     },
+    populateTaskEditor: (state, action) => {
+      return action.payload;
+    },
     resetAddTask: () => initialState,
   },
 });
@@ -78,6 +81,7 @@ export const {
   removeSubtask,
   resetAddTask,
   createID,
-} = addTaskSlice.actions;
+  populateTaskEditor,
+} = taskEditorSlice.actions;
 
-export default addTaskSlice.reducer;
+export default taskEditorSlice.reducer;

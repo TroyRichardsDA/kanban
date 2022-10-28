@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  addTaskIsOpen: false,
+  taskEditorIsOpen: false,
   deleteTypeIsOpen: false,
   taskMiniModalIsOpen: false,
   boardMiniModalIsOpen: false,
-  passedData: {} as any,
+  passedData: null as any,
 };
 
 export const modalsSlice = createSlice({
   name: "modals",
   initialState,
   reducers: {
-    toggleAddNewTask: (state, action) => {
-      state.addTaskIsOpen = action.payload;
+    toggleTaskEditor: (state, action) => {
+      state.taskEditorIsOpen = action.payload;
     },
     toggleTaskMiniModal: (state) => {
       state.taskMiniModalIsOpen = !state.taskMiniModalIsOpen;
@@ -22,17 +22,18 @@ export const modalsSlice = createSlice({
     toggleDeleteModal: (state, action) => {
       state.deleteTypeIsOpen = action.payload;
     },
-    populateData: (state, action) => {
+    populatePassedData: (state, action) => {
       state.passedData = action.payload;
     },
+
     resetModalsSlice: () => initialState,
   },
 });
 
 export const {
-  toggleAddNewTask,
+  toggleTaskEditor,
   toggleDeleteModal,
-  populateData,
+  populatePassedData,
   resetModalsSlice,
   toggleTaskMiniModal,
   toggleBoardMiniModal,
