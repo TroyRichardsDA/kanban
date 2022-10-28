@@ -1,4 +1,5 @@
 import Ellipsis from "../../assets/icon-vertical-ellipsis.svg";
+import MiniModal from "../../components/MiniModal/MiniModal";
 import Modal from "../../components/Modals/Modal";
 import StatusSelection from "../../components/StatusSelection/StatusSelection";
 import {
@@ -9,6 +10,7 @@ import {
 } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import { ITask } from "../../models/ITask";
+import DeleteType from "../DeleteType/DeleteType";
 import styles from "./ViewTask.module.scss";
 
 interface Props {
@@ -63,18 +65,25 @@ function ViewTask(props: Props) {
   }
 
   function changeStatus(newStatus: string) {
-    dispatch(changeTaskStatus({ newStatus, prev: status, task }));
+    if (newStatus !== status) {
+      dispatch(changeTaskStatus({ newStatus, prev: status, task }));
+    }
   }
 
   function toggleStatusList() {
     dispatch(toggleTaskStatusList({ task, status }));
   }
 
+  function deleteTask() {}
+
+  function editTask() {}
+
   return (
     <Modal toggle={closeModal}>
       <div className={styles.header}>
         <h2 className={styles.title}>{title}</h2>
         <img src={Ellipsis} alt="" />
+        <MiniModal editType={editTask} deleteType={deleteTask} type="Task" />
       </div>
       <p className={styles.description}>{description}</p>
       <div>
@@ -93,6 +102,7 @@ function ViewTask(props: Props) {
           toggleStatus={toggleStatusList}
         />
       </div>
+      <DeleteType title={title} type="task" />
     </Modal>
   );
 }

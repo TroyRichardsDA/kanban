@@ -34,7 +34,7 @@ export const boardsSlice = createSlice({
       state.boards.push(newBoard);
     },
 
-    addColumnToBoard: (state, action) => {
+    addColumnToBoard: (state) => {
       state.boards.map((board) => {
         if (board.isCurrent) {
           const cols = board.columns;
@@ -67,6 +67,8 @@ export const boardsSlice = createSlice({
       });
     },
 
+    deleteTask: (state) => {},
+
     toggleViewTask: (state, action) => {
       const { task, status, bool } = action.payload;
       const currentTask = findCurrentTask(state, status, task);
@@ -80,7 +82,7 @@ export const boardsSlice = createSlice({
       currentTask.status = newStatus;
 
       currentBoard.columns.map((col) => {
-        const index = col.tasks.indexOf(task!);
+        const index = col.tasks.indexOf(currentTask);
         if (col.name === prev) {
           col.tasks.splice(index, 1);
         }

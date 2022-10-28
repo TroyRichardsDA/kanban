@@ -3,7 +3,7 @@ import styles from "./Modal.module.scss";
 
 type Props = {
   children: ReactNode;
-  toggle: () => void;
+  toggle?: () => void;
 };
 
 function Modal(props: Props) {

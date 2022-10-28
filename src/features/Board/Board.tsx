@@ -2,6 +2,7 @@ import { addColumnToBoard } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import Column from "../../components/Column/Column";
 import styles from "./Board.module.scss";
+import DeleteType from "../DeleteType/DeleteType";
 type Props = {};
 
 const Board = (props: Props) => {
@@ -12,7 +13,7 @@ const Board = (props: Props) => {
   const dispatch = useAppDispatch();
 
   function addtoColumns() {
-    dispatch(addColumnToBoard(currentBoard));
+    dispatch(addColumnToBoard());
   }
 
   return (
