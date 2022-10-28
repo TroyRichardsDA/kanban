@@ -19,11 +19,15 @@ export const modalsSlice = createSlice({
     populateData: (state, action) => {
       state.passedData = action.payload;
     },
-    reset: () => initialState,
+    resetModalsSlice: () => initialState,
   },
 });
 
-export const { toggleAddNewTask, toggleDeleteModal, populateData, reset } =
-  modalsSlice.actions;
+export const {
+  toggleAddNewTask,
+  toggleDeleteModal,
+  populateData,
+  resetModalsSlice,
+} = modalsSlice.actions;
 
 export default modalsSlice.reducer;

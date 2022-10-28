@@ -1,17 +1,18 @@
-import { addColumnToBoard } from "../../context/boards";
+import { addColumnToBoard, deleteTask } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import Column from "../../components/Column/Column";
 import styles from "./Board.module.scss";
 import DeleteType from "../DeleteType/DeleteType";
-type Props = {};
+import { resetModalsSlice, toggleDeleteModal } from "../../context/modals";
 
-const Board = (props: Props) => {
+const Board = () => {
   const { boards } = useAppSelector((state) => state.boards);
   const { deleteTypeIsOpen, passedData } = useAppSelector(
     (state) => state.modals
   );
   const currentBoard = boards.find((board) => board.isCurrent === true)!;
   const boardColumnsLength = currentBoard.columns.length;
+  const dispatch = useAppDispatch();
 
   function typeCheck() {
     if (passedData.subtasks) {
@@ -21,7 +22,20 @@ const Board = (props: Props) => {
     }
   }
 
-  const dispatch = useAppDispatch();
+  function deleteThisItem() {
+    dispatch(toggleDeleteModal(false));
+
+    if (typeCheck() === "task") {
+      dispatch(deleteTask({ task: passedData, status: passedData.status }));
+    } else {
+    }
+
+    dispatch(resetModalsSlice());
+  }
+
+  function dontDelete() {
+    dispatch(toggleDeleteModal(false));
+  }
 
   function addtoColumns() {
     dispatch(addColumnToBoard());
@@ -43,7 +57,12 @@ const Board = (props: Props) => {
         <p>+ New Column</p>
       </div>
       {deleteTypeIsOpen && (
-        <DeleteType title={passedData.title} type={typeCheck()} />
+        <DeleteType
+          dontDelete={dontDelete}
+          deleteThisItem={deleteThisItem}
+          title={passedData.title}
+          type={typeCheck()}
+        />
       )}
     </main>
   );

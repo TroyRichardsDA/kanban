@@ -34,6 +34,8 @@ export const boardsSlice = createSlice({
       state.boards.push(newBoard);
     },
 
+    deleteBoard: (state, action) => {},
+
     addColumnToBoard: (state) => {
       state.boards.map((board) => {
         if (board.isCurrent) {
@@ -67,10 +69,17 @@ export const boardsSlice = createSlice({
       });
     },
 
-    deleteTask: (state) => {},
+    deleteTask: (state, action) => {
+      const { task, status } = action.payload;
+      const currentBoard = findCurrentBoard(state);
+      const currentTask = findCurrentTask(state, status, task);
 
-    passTask: (_, action) => {
-      return action.payload;
+      currentBoard.columns.map((col) => {
+        const index = col.tasks.indexOf(currentTask);
+        if (col.name === status) {
+          col.tasks.splice(index, 1);
+        }
+      });
     },
 
     toggleViewTask: (state, action) => {
@@ -121,6 +130,8 @@ export const {
   toggleTaskStatusList,
   toggleViewTask,
   updateSubTaskIsComplete,
+  deleteTask,
+  deleteBoard,
 } = boardsSlice.actions;
 
 export default boardsSlice.reducer;

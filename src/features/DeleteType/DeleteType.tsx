@@ -4,10 +4,13 @@ import styles from "./DeleteType.module.scss";
 interface Props {
   type: "task" | "board";
   title: string;
+  deleteThisItem: () => void;
+  dontDelete: () => void;
 }
 
 const DeleteType = (props: Props) => {
   const { type, title } = props;
+  const { deleteThisItem, dontDelete } = props;
 
   function fillerText() {
     if (type === "board") {
@@ -25,8 +28,12 @@ const DeleteType = (props: Props) => {
       </p>
 
       <div className={styles.btns_container}>
-        <button className={styles.delete}>Delete</button>
-        <button className={styles.cancel}>Cancel</button>
+        <button onClick={() => deleteThisItem()} className={styles.delete}>
+          Delete
+        </button>
+        <button onClick={() => dontDelete()} className={styles.cancel}>
+          Cancel
+        </button>
       </div>
     </Modal>
   );
