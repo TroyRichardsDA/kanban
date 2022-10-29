@@ -18,7 +18,9 @@ export const modalsSlice = createSlice({
     toggleTaskMiniModal: (state) => {
       state.taskMiniModalIsOpen = !state.taskMiniModalIsOpen;
     },
-    toggleBoardMiniModal: (state, action) => {},
+    toggleBoardMiniModal: (state) => {
+      state.boardMiniModalIsOpen = !state.boardMiniModalIsOpen;
+    },
     toggleDeleteModal: (state, action) => {
       state.deleteTypeIsOpen = action.payload;
     },

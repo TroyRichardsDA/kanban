@@ -1,6 +1,6 @@
 import styles from "./MiniModal.module.scss";
 interface Props {
-  type: string;
+  type: "Task" | "Board";
   deleteType: () => void;
   editType: () => void;
 }
@@ -9,8 +9,13 @@ const MiniModal = (props: Props) => {
   const { type } = props;
   const { deleteType, editType } = props;
 
+  const position =
+    type === "Task"
+      ? { top: "34px", right: "-34px" }
+      : { top: "40px", right: "-4px" };
+
   return (
-    <div className={styles.modalBG}>
+    <div style={position} className={styles.modalBG}>
       <p onClick={editType} className={styles.edit}>
         Edit {type}
       </p>

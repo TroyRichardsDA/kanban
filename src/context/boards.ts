@@ -47,7 +47,12 @@ export const boardsSlice = createSlice({
       state.boards.push(newBoard);
     },
 
-    deleteBoard: (state, action) => {},
+    deleteBoard: (state, action) => {
+      const currentBoard = findCurrentBoard(state);
+      const index = state.boards.indexOf(currentBoard);
+      state.boards.splice(index, 1);
+      state.boards[0].isCurrent = true;
+    },
 
     addColumnToBoard: (state) => {
       state.boards.map((board) => {

@@ -4,8 +4,12 @@
   position: absolute;
   right: -34px;
   top: 34px;
+
   width: 40%;
+  min-width: fit-content;
   padding: 16px;
+  white-space: nowrap;
+
   display: grid;
   gap: 16px;
   background-color: white;

@@ -4,20 +4,35 @@ import Ellipsis from "../../assets/icon-vertical-ellipsis.svg";
 import Plus from "../../assets/icon-add-task-mobile.svg";
 import styles from "./Header.module.scss";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
-import { toggleTaskEditor } from "../../context/modals";
+import {
+  populatePassedData,
+  toggleBoardMiniModal,
+  toggleDeleteModal,
+  toggleTaskEditor,
+} from "../../context/modals";
+import MiniModal from "../../components/MiniModal/MiniModal";
 
 function Header() {
   const { boards } = useAppSelector((state) => state.boards);
-  const dispatch = useAppDispatch();
+  const { boardMiniModalIsOpen } = useAppSelector((state) => state.modals);
   const currentBoard = boards.find((board) => board.isCurrent)!;
   const noColumns = currentBoard.columns.length === 0;
+  const dispatch = useAppDispatch();
+
+  function deleteBoard() {
+    dispatch(toggleDeleteModal(true));
+    dispatch(toggleBoardMiniModal());
+    dispatch(populatePassedData(currentBoard));
+  }
+
+  function editBoard() {}
 
   return (
     <nav className={styles.header}>
       <div className={styles.header__left}>
         <img src={MobileLogo} alt="" />
         <div>
-          <h2>Platform Launch</h2>
+          <h2>{currentBoard.name}</h2>
           <img src={ChevronDown} alt="arrow down" />
         </div>
       </div>
@@ -29,7 +44,19 @@ function Header() {
         >
           <img src={Plus} alt="" />
         </button>
-        <img className={styles.ellipsis} src={Ellipsis} alt="" />
+        <img
+          onClick={() => dispatch(toggleBoardMiniModal())}
+          className={styles.ellipsis}
+          src={Ellipsis}
+          alt=""
+        />
+        {boardMiniModalIsOpen && (
+          <MiniModal
+            type="Board"
+            deleteType={deleteBoard}
+            editType={editBoard}
+          />
+        )}
       </div>
     </nav>
   );

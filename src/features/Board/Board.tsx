@@ -1,4 +1,8 @@
-import { addColumnToBoard, deleteTask } from "../../context/boards";
+import {
+  addColumnToBoard,
+  deleteBoard,
+  deleteTask,
+} from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import Column from "../../components/Column/Column";
 import styles from "./Board.module.scss";
@@ -30,6 +34,7 @@ const Board = () => {
     if (typeCheck() === "task") {
       dispatch(deleteTask({ task: passedData, status: passedData.status }));
     } else {
+      dispatch(deleteBoard(passedData));
     }
 
     dispatch(resetModalsSlice());
@@ -37,6 +42,7 @@ const Board = () => {
 
   function dontDelete() {
     dispatch(toggleDeleteModal(false));
+    dispatch(resetModalsSlice());
   }
 
   function addtoColumns() {
@@ -65,7 +71,7 @@ const Board = () => {
         <DeleteType
           dontDelete={dontDelete}
           deleteThisItem={deleteThisItem}
-          title={passedData.title}
+          title={passedData.title || passedData.name}
           type={typeCheck()}
         />
       )}
