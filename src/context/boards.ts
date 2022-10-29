@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { nanoid } from "nanoid";
 import { IBoard } from "../models/IBoard";
 import { ITask } from "../models/ITask";
@@ -95,6 +95,19 @@ export const boardsSlice = createSlice({
       });
     },
 
+    editTask: (state, action) => {
+      const { task, status } = action.payload;
+      const currentBoard = findCurrentBoard(state);
+      const currentTask = findCurrentTask(state, status, task);
+
+      currentBoard.columns.map((col) => {
+        const index = col.tasks.indexOf(currentTask);
+        if (col.name === status) {
+          col.tasks.splice(index, 1, task);
+        }
+      });
+    },
+
     toggleViewTask: (state, action) => {
       const { task, status, bool } = action.payload;
       const currentTask = findCurrentTask(state, status, task);
@@ -145,6 +158,7 @@ export const {
   updateSubTaskIsComplete,
   deleteTask,
   deleteBoard,
+  editTask,
 } = boardsSlice.actions;
 
 export default boardsSlice.reducer;

@@ -14,7 +14,7 @@ import {
 import { useEffect } from "react";
 import { ITask } from "../../models/ITask";
 import { resetModalsSlice, toggleTaskEditor } from "../../context/modals";
-import { addTaskToColumn } from "../../context/boards";
+import { addTaskToColumn, editTask } from "../../context/boards";
 import { ISubTask } from "../../models/ISubtask";
 import Modal from "../../components/Modals/Modal";
 import { nanoid } from "@reduxjs/toolkit";
@@ -75,7 +75,7 @@ const TaskEditor = () => {
       description,
       status,
       statusListIsOpen: false,
-      viewTask,
+      viewTask: false,
       subtasks: validSubtasks,
     };
 
@@ -89,6 +89,7 @@ const TaskEditor = () => {
       if (!passedData) {
         dispatch(addTaskToColumn({ column: status, task: newTask }));
       } else {
+        dispatch(editTask({ task: newTask, status }));
       }
       dispatch(resetModalsSlice());
     }
