@@ -1,7 +1,9 @@
 @use "./styles/variables.scss" as *;
 
 .App {
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
   background: $lightBG;
   font-family: $baseFont;
+  height: 100%;
 }
