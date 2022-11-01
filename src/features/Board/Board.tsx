@@ -1,14 +1,13 @@
 import { addColumnToBoard } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import Column from "../../components/Column/Column";
-import Modal from "../../components/Modals/Modal";
 import styles from "./Board.module.scss";
-import { ReactComponent as BoardIcon } from "../../assets/icon-board.svg";
+import BoardsNav from "../../components/BoardsNav/BoardsNav";
 
 const Board = () => {
   const { boards } = useAppSelector((state) => state.boards);
-
-  const currentBoard = boards.find((board) => board.isCurrent === true)!;
+  const { allBoardsModalIsOpen } = useAppSelector((state) => state.modals);
+  const currentBoard = boards.find((board) => board.isCurrent)!;
   const boardColumnsLength = currentBoard.columns.length;
   const dispatch = useAppDispatch();
 
@@ -16,19 +15,8 @@ const Board = () => {
     dispatch(addColumnToBoard());
   }
 
-  const allBoards = boards.map((board) => (
-    <div
-      className={`${styles.singleBoard} ${
-        board.isCurrent && styles.currentBoard
-      }`}
-    >
-      <BoardIcon />
-      <p>{board.name}</p>
-    </div>
-  ));
-
   return (
-    <main className={boardColumnsLength > 0 ? styles.board : ""}>
+    <main className={styles.board}>
       <>
         {boardColumnsLength > 0 && (
           <>
@@ -49,12 +37,7 @@ const Board = () => {
         </div>
       )}
 
-      <div className={styles.allBoards}>
-        <Modal isAllBoardsModal={true}>
-          <h3>All boards</h3>
-          <div>{allBoards}</div>
-        </Modal>
-      </div>
+      {allBoardsModalIsOpen && <BoardsNav />}
     </main>
   );
 };

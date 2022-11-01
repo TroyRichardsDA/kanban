@@ -1,4 +1,5 @@
-import ChevronDown from "../../assets/icon-chevron-down.svg";
+import { ReactComponent as ChevronDown } from "../../assets/icon-chevron-down.svg";
+import { ReactComponent as ChevronUp } from "../../assets/icon-chevron-up.svg";
 import MobileLogo from "../../assets/logo-mobile.svg";
 import Ellipsis from "../../assets/icon-vertical-ellipsis.svg";
 import Plus from "../../assets/icon-add-task-mobile.svg";
@@ -6,6 +7,7 @@ import styles from "./Header.module.scss";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import {
   populatePassedData,
+  toggleAllBoardsModal,
   toggleBoardMiniModal,
   toggleDeleteModal,
   toggleTaskEditor,
@@ -14,10 +16,16 @@ import MiniModal from "../../components/MiniModal/MiniModal";
 
 function Header() {
   const { boards } = useAppSelector((state) => state.boards);
-  const { boardMiniModalIsOpen } = useAppSelector((state) => state.modals);
+  const { boardMiniModalIsOpen, allBoardsModalIsOpen } = useAppSelector(
+    (state) => state.modals
+  );
   const currentBoard = boards.find((board) => board.isCurrent)!;
   const noColumns = currentBoard.columns.length === 0;
   const dispatch = useAppDispatch();
+
+  function toggleAllBoards() {
+    dispatch(toggleAllBoardsModal());
+  }
 
   function deleteBoard() {
     dispatch(toggleDeleteModal(true));
@@ -31,9 +39,9 @@ function Header() {
     <nav className={styles.header}>
       <div className={styles.header__left}>
         <img src={MobileLogo} alt="" />
-        <div>
+        <div onClick={toggleAllBoards}>
           <h2>{currentBoard.name}</h2>
-          <img src={ChevronDown} alt="arrow down" />
+          {allBoardsModalIsOpen ? <ChevronUp /> : <ChevronDown />}
         </div>
       </div>
       <div className={styles.header__right}>
