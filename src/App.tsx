@@ -6,6 +6,7 @@ import DeleteType from "./features/DeleteType/DeleteType";
 import TaskEditor from "./features/TaskEditor/TaskEditor";
 import { resetModalsSlice, toggleDeleteModal } from "./context/modals";
 import { deleteBoard, deleteTask } from "./context/boards";
+import BoardsEditor from "./features/BoardsEditor/BoardsEditor";
 
 function App() {
   const { taskEditorIsOpen } = useAppSelector((state) => state.modals);
@@ -53,6 +54,7 @@ function App() {
       )}
 
       {taskEditorIsOpen && <TaskEditor />}
+      <BoardsEditor />
     </div>
   );
 }

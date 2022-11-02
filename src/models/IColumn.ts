@@ -1,7 +1,7 @@
 import { ITask } from "./ITask";
 
 export interface IColumn {
-  id: number;
+  id: string;
   name: string;
   tasks: ITask[];
 }

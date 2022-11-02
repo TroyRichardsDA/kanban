@@ -1,5 +1,5 @@
-@use "../../styles/variables.scss" as *;
-@use "../../styles/global.scss" as *;
+@use "./variables.scss" as *;
+@use "./global.scss" as *;
 
 .header {
   font-size: 18px;
@@ -15,7 +15,7 @@
   @include label;
 }
 
-.addsubtask {
+.addNew {
   color: $primary;
   font-weight: 700;
   line-height: 23px;
@@ -25,7 +25,7 @@
   border-radius: 210px;
 }
 
-.button {
+.submitButton {
   display: flex;
   align-items: center;
   justify-content: center;

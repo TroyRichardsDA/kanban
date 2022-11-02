@@ -19,20 +19,13 @@ import { ISubTask } from "../../models/ISubtask";
 import Modal from "../../components/Modals/Modal";
 import { nanoid } from "@reduxjs/toolkit";
 import EditableList from "../../components/EditableList/EditableList";
-import styles from "./TaskEditor.module.scss";
 import StatusSelection from "../../components/StatusSelection/StatusSelection";
+import styles from "../../styles/editors.module.scss";
 
 const TaskEditor = () => {
   const { boards } = useAppSelector((state) => state.boards);
-  const {
-    title,
-    description,
-    subtasks,
-    status,
-    statusListIsOpen,
-    id,
-    viewTask,
-  } = useAppSelector((state) => state.taskEditor);
+  const { title, description, subtasks, status, statusListIsOpen, id } =
+    useAppSelector((state) => state.taskEditor);
   const { passedData } = useAppSelector((state) => state.modals);
   const currentBoard = boards.find((board) => board.isCurrent)!;
 
@@ -141,7 +134,7 @@ const TaskEditor = () => {
           />
         </label>
         <label className={styles.label}> Subtasks {subtasksList}</label>
-        <button className={styles.addsubtask} onClick={(e) => addNewSubtask(e)}>
+        <button className={styles.addNew} onClick={(e) => addNewSubtask(e)}>
           {" "}
           + Add New Subtask{" "}
         </button>
@@ -156,8 +149,8 @@ const TaskEditor = () => {
           />{" "}
         </label>
 
-        <button className={styles.button} type="submit">
-          Create Task
+        <button className={styles.submitButton} type="submit">
+          {passedData ? "Save Changes" : "Create Task"}
         </button>
       </form>
     </Modal>

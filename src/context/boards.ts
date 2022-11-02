@@ -60,11 +60,11 @@ export const boardsSlice = createSlice({
           const cols = board.columns;
 
           if (cols.length === 0) {
-            cols.push({ id: 1, name: "Todo", tasks: [] });
+            cols.push({ id: nanoid(), name: "Todo", tasks: [] });
           } else if (cols.length === 1) {
-            cols.push({ id: 2, name: "Doing", tasks: [] });
+            cols.push({ id: nanoid(), name: "Doing", tasks: [] });
           } else if (cols.length === 2) {
-            cols.push({ id: 3, name: "Done", tasks: [] });
+            cols.push({ id: nanoid(), name: "Done", tasks: [] });
           }
           return board;
         } else {

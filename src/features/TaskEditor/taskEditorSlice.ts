@@ -32,12 +32,15 @@ export const taskEditorSlice = createSlice({
     createID: (state, action) => {
       state.id = action.payload;
     },
+
     updateTitle: (state, action) => {
       state.title = action.payload;
     },
+
     updateDescription: (state, action) => {
       state.description = action.payload;
     },
+
     updateSubtasks: (state, action) => {
       const { id, title } = action.payload;
       state.subtasks.map((subtask) => {
@@ -48,25 +51,32 @@ export const taskEditorSlice = createSlice({
         }
       });
     },
+
     addSubtask: (state) => {
       state.subtasks.push(createNewSubtask());
     },
+
     removeSubtask: (state, action) => {
       const subtask = state.subtasks.find(
         (subtask) => subtask.id === action.payload
       );
       const index = state.subtasks.indexOf(subtask!);
+
       state.subtasks.splice(index, 1);
     },
+
     updateStatus: (state, action) => {
       state.status = action.payload;
     },
+
     toggleStatusesList: (state) => {
       state.statusListIsOpen = !state.statusListIsOpen;
     },
-    populateTaskEditor: (state, action) => {
+
+    populateTaskEditor: (_, action) => {
       return action.payload;
     },
+
     resetAddTask: () => initialState,
   },
 });
