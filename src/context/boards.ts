@@ -60,11 +60,27 @@ export const boardsSlice = createSlice({
       state.boards.splice(index, 1, action.payload);
     },
 
-    deleteBoard: (state, action) => {
-      const currentBoard = findCurrentBoard(state);
-      const index = state.boards.indexOf(currentBoard);
-      state.boards.splice(index, 1);
-      state.boards[0].isCurrent = true;
+    changeBoard: (state, action) => {
+      state.boards.map((board) => {
+        if (board.id !== action.payload) {
+          return (board.isCurrent = false);
+        } else {
+          return (board.isCurrent = true);
+        }
+      });
+    },
+
+    deleteBoard: (state) => {
+      if (state.boards.length > 1) {
+        const currentBoard = findCurrentBoard(state);
+        const index = state.boards.indexOf(currentBoard);
+        state.boards.splice(index, 1);
+        state.boards[0].isCurrent = true;
+      } else {
+        alert(
+          "You must have atleast one board active at all times. Please make another board before trying to delete this one."
+        );
+      }
     },
 
     addColumnToBoard: (state) => {
@@ -78,6 +94,8 @@ export const boardsSlice = createSlice({
             cols.push({ id: nanoid(), name: "Doing", tasks: [] });
           } else if (cols.length === 2) {
             cols.push({ id: nanoid(), name: "Done", tasks: [] });
+          } else {
+            cols.push({ id: nanoid(), name: "New Column", tasks: [] });
           }
           return board;
         } else {
@@ -179,6 +197,7 @@ export const {
   editTask,
   addNewBoard,
   editBoard,
+  changeBoard,
 } = boardsSlice.actions;
 
 export default boardsSlice.reducer;

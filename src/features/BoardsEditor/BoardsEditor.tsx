@@ -82,6 +82,7 @@ const BoardsEditor = () => {
 
     return (
       <EditableList
+        key={column.id}
         id={id}
         text={name}
         updateText={updateName}

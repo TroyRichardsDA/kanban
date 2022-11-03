@@ -31,7 +31,7 @@ function App() {
     if (typeCheck() === "task") {
       dispatch(deleteTask({ task: passedData, status: passedData.status }));
     } else {
-      dispatch(deleteBoard(passedData));
+      dispatch(deleteBoard());
     }
 
     dispatch(resetModalsSlice());

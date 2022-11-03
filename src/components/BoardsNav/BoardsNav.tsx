@@ -5,6 +5,7 @@ import { ReactComponent as LightTheme } from "../../assets/icon-light-theme.svg"
 import { ReactComponent as DarkTheme } from "../../assets/icon-dark-theme.svg";
 import Modal from "../Modals/Modal";
 import { toggleAllBoardsModal, toggleBoardsEditor } from "../../context/modals";
+import { changeBoard } from "../../context/boards";
 
 type Props = {};
 
@@ -19,14 +20,23 @@ const BoardsNav = (props: Props) => {
     dispatch(toggleBoardsEditor(true));
   }
 
+  function changeCurrentBoard(boardID: string, isCurrent: boolean) {
+    if (!isCurrent) {
+      dispatch(changeBoard(boardID));
+    }
+  }
+
   const allBoards = boards.map((board) => (
     <div
+      key={board.id}
       className={`${styles.singleBoard} ${
         board.isCurrent && styles.currentBoard
       }`}
     >
       <BoardIcon />
-      <p>{board.name}</p>
+      <p onClick={() => changeCurrentBoard(board.id, board.isCurrent)}>
+        {board.name}
+      </p>
     </div>
   ));
 
