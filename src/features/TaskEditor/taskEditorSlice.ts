@@ -77,7 +77,7 @@ export const taskEditorSlice = createSlice({
       return action.payload;
     },
 
-    resetAddTask: () => initialState,
+    resetTaskEditor: () => initialState,
   },
 });
 
@@ -89,7 +89,7 @@ export const {
   toggleStatusesList,
   addSubtask,
   removeSubtask,
-  resetAddTask,
+  resetTaskEditor,
   createID,
   populateTaskEditor,
 } = taskEditorSlice.actions;

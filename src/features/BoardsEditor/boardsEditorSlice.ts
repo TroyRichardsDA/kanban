@@ -53,6 +53,8 @@ export const boardsEditorSlice = createSlice({
 
       state.columns.splice(index, 1);
     },
+
+    resetBoardsEditor: () => initialState,
   },
 });
 
@@ -62,6 +64,7 @@ export const {
   updateColumns,
   removeColumn,
   updateBoardName,
+  resetBoardsEditor,
 } = boardsEditorSlice.actions;
 
 export default boardsEditorSlice.reducer;

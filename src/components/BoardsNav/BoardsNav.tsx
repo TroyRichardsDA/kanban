@@ -1,15 +1,23 @@
-import { useAppSelector } from "../../context/hooks";
+import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import styles from "./BoardsNav.module.scss";
 import { ReactComponent as BoardIcon } from "../../assets/icon-board.svg";
 import { ReactComponent as LightTheme } from "../../assets/icon-light-theme.svg";
 import { ReactComponent as DarkTheme } from "../../assets/icon-dark-theme.svg";
 import Modal from "../Modals/Modal";
+import { toggleAllBoardsModal, toggleBoardsEditor } from "../../context/modals";
 
 type Props = {};
 
 const BoardsNav = (props: Props) => {
   const { boards } = useAppSelector((state) => state.boards);
-  const currentBoard = boards.find((board) => board.isCurrent)!;
+
+  const dispatch = useAppDispatch();
+
+  function openBoardsEditor(e: any) {
+    e.preventDefault();
+    dispatch(toggleAllBoardsModal());
+    dispatch(toggleBoardsEditor(true));
+  }
 
   const allBoards = boards.map((board) => (
     <div
@@ -31,7 +39,12 @@ const BoardsNav = (props: Props) => {
             {allBoards}
             <div className={styles.createNew_container}>
               <BoardIcon />
-              <button className={styles.btn}>+ Create New Board</button>
+              <button
+                className={styles.btn}
+                onClick={(e) => openBoardsEditor(e)}
+              >
+                + Create New Board
+              </button>
             </div>
           </div>
 

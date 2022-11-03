@@ -9,6 +9,7 @@ import {
   populatePassedData,
   toggleAllBoardsModal,
   toggleBoardMiniModal,
+  toggleBoardsEditor,
   toggleDeleteModal,
   toggleTaskEditor,
 } from "../../context/modals";
@@ -33,7 +34,11 @@ function Header() {
     dispatch(populatePassedData(currentBoard));
   }
 
-  function editBoard() {}
+  function editBoard() {
+    dispatch(toggleBoardsEditor(true));
+    dispatch(toggleBoardMiniModal());
+    dispatch(populatePassedData(currentBoard));
+  }
 
   return (
     <nav className={styles.header}>

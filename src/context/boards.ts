@@ -47,6 +47,19 @@ export const boardsSlice = createSlice({
       state.boards.push(newBoard);
     },
 
+    addNewBoard: (state, action) => {
+      state.boards.map((board) => {
+        return (board.isCurrent = false);
+      });
+      state.boards.push(action.payload);
+    },
+
+    editBoard: (state, action) => {
+      const currentBoard = findCurrentBoard(state);
+      const index = state.boards.indexOf(currentBoard);
+      state.boards.splice(index, 1, action.payload);
+    },
+
     deleteBoard: (state, action) => {
       const currentBoard = findCurrentBoard(state);
       const index = state.boards.indexOf(currentBoard);
@@ -164,6 +177,8 @@ export const {
   deleteTask,
   deleteBoard,
   editTask,
+  addNewBoard,
+  editBoard,
 } = boardsSlice.actions;
 
 export default boardsSlice.reducer;

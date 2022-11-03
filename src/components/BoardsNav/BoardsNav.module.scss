@@ -20,7 +20,6 @@
 
 .boards_list {
   display: grid;
-  gap: 12px;
 }
 
 .singleBoard {
@@ -58,6 +57,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  padding: 16px 0;
 
   svg > path {
     fill: $primary;

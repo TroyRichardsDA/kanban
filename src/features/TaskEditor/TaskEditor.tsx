@@ -7,9 +7,9 @@ import {
   updateSubtasks,
   updateTitle,
   addSubtask,
-  resetAddTask,
   createID,
   populateTaskEditor,
+  resetTaskEditor,
 } from "./taskEditorSlice";
 import { useEffect } from "react";
 import { ITask } from "../../models/ITask";
@@ -55,6 +55,7 @@ const TaskEditor = () => {
 
   function closeModal() {
     dispatch(toggleTaskEditor(false));
+    dispatch(resetTaskEditor());
   }
 
   function sendNewTask(e: any) {
@@ -62,6 +63,7 @@ const TaskEditor = () => {
     const validSubtasks = subtasks.filter(
       (subtask: ISubTask) => subtask.title !== ""
     );
+
     const newTask: ITask = {
       id,
       title,
@@ -72,18 +74,20 @@ const TaskEditor = () => {
       subtasks: validSubtasks,
     };
 
-    const filledCorretly = Object.values(newTask).every(
-      (value) => value != null && value !== ""
-    );
+    const filledCorretly =
+      Object.values(newTask).every((value) => value != null && value !== "") &&
+      newTask.subtasks.length > 0;
 
     if (filledCorretly) {
       dispatch(toggleTaskEditor(false));
-      dispatch(resetAddTask());
+      dispatch(resetTaskEditor());
+
       if (!passedData) {
         dispatch(addTaskToColumn({ column: status, task: newTask }));
       } else {
         dispatch(editTask({ task: newTask, status }));
       }
+
       dispatch(resetModalsSlice());
     }
   }
