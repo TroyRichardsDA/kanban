@@ -44,7 +44,7 @@ function Header() {
     <nav className={styles.header}>
       <div className={styles.header__left}>
         <img src={MobileLogo} alt="" />
-        <div onClick={toggleAllBoards}>
+        <div className={styles.board_name} onClick={toggleAllBoards}>
           <h2>{currentBoard.name}</h2>
           {allBoardsModalIsOpen ? <ChevronUp /> : <ChevronDown />}
         </div>

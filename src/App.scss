@@ -3,7 +3,12 @@
 .App {
   display: flex;
   flex-direction: column;
-  background: $lightBG;
+  background-color: $lightBG;
   font-family: $baseFont;
   height: 100%;
+  transition: 0.4s;
+}
+
+.dark {
+  background-color: $darkBG;
 }

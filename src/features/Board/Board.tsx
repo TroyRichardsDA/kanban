@@ -16,7 +16,11 @@ const Board = () => {
   }
 
   return (
-    <main className={styles.board}>
+    <main
+      className={`${styles.board} ${
+        boardColumnsLength === 0 && styles.no_items
+      }`}
+    >
       <>
         {boardColumnsLength > 0 && (
           <>

@@ -17,9 +17,14 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
 
     h2 {
       font-size: 18px;
+    }
+
+    svg {
+      margin-top: 2px;
     }
   }
 }

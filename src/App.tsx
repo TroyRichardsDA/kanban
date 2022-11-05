@@ -15,6 +15,7 @@ function App() {
   const { deleteTypeIsOpen, passedData } = useAppSelector(
     (state) => state.modals
   );
+  const { isDarkMode } = useAppSelector((state) => state.theme);
   const dispatch = useAppDispatch();
 
   function typeCheck() {
@@ -43,7 +44,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className={`App ${isDarkMode && "dark"}`}>
       <Header />
       <Board />
       {deleteTypeIsOpen && (

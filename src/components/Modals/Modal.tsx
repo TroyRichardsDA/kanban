@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { useAppSelector } from "../../context/hooks";
 import styles from "./Modal.module.scss";
 
 type Props = {
@@ -9,6 +10,7 @@ type Props = {
 
 function Modal(props: Props) {
   const { children, isAllBoardsModal } = props;
+  const { isDarkMode } = useAppSelector((state) => state.theme);
   const { toggle } = props;
 
   function preventChild(e: any) {
@@ -27,7 +29,7 @@ function Modal(props: Props) {
       <div
         style={{ width: modalWidth }}
         onClick={(e) => preventChild(e)}
-        className={styles.modal}
+        className={`${styles.modal} ${isDarkMode ? "dark" : ""}`}
       >
         {children}
       </div>
