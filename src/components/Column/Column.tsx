@@ -1,5 +1,4 @@
 import { ITask } from "../../models/ITask";
-import styles from "./Column.module.scss";
 import Task from "../Task/Task";
 import { useAppSelector } from "../../context/hooks";
 
@@ -29,18 +28,18 @@ const Column = (props: Props) => {
   }
 
   return (
-    <section className={styles.column}>
-      <div className={styles.header}>
+    <section className="column_container">
+      <div className="column_header">
         <div
+          className="column_circle"
           style={{ backgroundColor: colorGen() }}
-          className={styles.circle}
         ></div>
-        <h2 className={styles.title}>
+        <h2 className="column_title">
           {name} {!tasks ? "" : `(${tasks?.length})`}{" "}
         </h2>
       </div>
-      <div className={styles.tasks}>
-        {tasks?.map((task, id) => (
+      <div className="column_tasks">
+        {tasks?.map((task) => (
           <Task key={task.id} task={task} />
         ))}
       </div>

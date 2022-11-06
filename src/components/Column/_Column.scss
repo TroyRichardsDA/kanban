@@ -1,17 +1,23 @@
 @use "../../styles/variables.scss" as *;
 
-.column {
+.column_container {
   min-width: 280px;
 }
 
-.header {
+.column_header {
   display: flex;
   align-items: center;
   margin-bottom: 24px;
   gap: 12px;
 }
 
-.title {
+.column_circle {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+}
+
+.column_title {
   font-size: 12px;
   color: $grey;
   text-transform: uppercase;
@@ -20,13 +26,7 @@
   font-weight: 700;
 }
 
-.circle {
-  height: 15px;
-  width: 15px;
-  border-radius: 50%;
-}
-
-.tasks {
+.column_tasks {
   display: grid;
   gap: 20px;
 }

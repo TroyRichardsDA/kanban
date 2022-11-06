@@ -1,22 +1,23 @@
 @use "../../styles/variables.scss" as *;
 
-.header {
+.delete-type_title {
   color: $red;
 }
 
-.text {
+.delete-type_text {
   color: $grey;
   font-weight: 500;
   font-size: 13px;
   line-height: 23px;
 }
 
-.btns_container {
+.delete-type_btns-container {
   display: flex;
   flex-direction: column;
   gap: 16px;
 
   button {
+    cursor: pointer;
     border-radius: 20px;
     border: none;
     padding: 8px;
@@ -25,12 +26,12 @@
     line-height: 23px;
   }
 
-  .delete {
+  .delete-type_delete {
     color: white;
     background-color: $red;
   }
 
-  .cancel {
+  .delete-type_cancel {
     color: $primary;
     background: rgba(99, 95, 199, 0.1);
   }

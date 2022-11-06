@@ -1,7 +1,6 @@
 import { addColumnToBoard } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import Column from "../../components/Column/Column";
-import styles from "./Board.module.scss";
 import BoardsNav from "../../components/BoardsNav/BoardsNav";
 
 const Board = () => {
@@ -17,29 +16,27 @@ const Board = () => {
 
   return (
     <main
-      className={`${styles.board} ${
-        boardColumnsLength === 0 && styles.no_items
-      }`}
+      className={`board_container ${boardColumnsLength === 0 && "board_empty"}`}
     >
+      {boardColumnsLength === 0 && (
+        <div className="board_empty--content">
+          <p>This board is empty. Create a new column to get started.</p>
+          <button onClick={() => addtoColumns()}> + Add New Column </button>
+        </div>
+      )}
+
       <>
         {boardColumnsLength > 0 && (
           <>
             {currentBoard.columns.map(({ id, name, tasks }) => (
               <Column key={id} name={name} tasks={tasks} />
             ))}
-            <div onClick={() => addtoColumns()} className={styles.new_column}>
+            <div className="board_new-column" onClick={() => addtoColumns()}>
               <p>+ New Column</p>
             </div>
           </>
         )}
       </>
-
-      {boardColumnsLength === 0 && (
-        <div className={styles.empty}>
-          <p>This board is empty. Create a new column to get started.</p>
-          <button onClick={() => addtoColumns()}> + Add New Column </button>
-        </div>
-      )}
 
       {allBoardsModalIsOpen && <BoardsNav />}
     </main>

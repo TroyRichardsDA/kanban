@@ -2,7 +2,6 @@ import { toggleViewTask } from "../../context/boards";
 import { useAppDispatch } from "../../context/hooks";
 import ViewTask from "../../features/ViewTask/ViewTask";
 import { ITask } from "../../models/ITask";
-import styles from "./Task.module.scss";
 
 type Props = {
   task: ITask;
@@ -26,9 +25,9 @@ function Task(props: Props) {
   }
 
   return (
-    <div onClick={() => openTask()} className={styles.task}>
-      <h3 className={styles.title}>{title}</h3>
-      <p className={styles.subtasks}>
+    <div onClick={() => openTask()} className="task_container">
+      <h3 className="task_title">{title}</h3>
+      <p className="task_subtasks">
         {subtasksComplete} of {subtasks.length} subtasks
       </p>
       <div onClick={(e) => preventChild(e)}>

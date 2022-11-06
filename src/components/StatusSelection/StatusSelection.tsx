@@ -1,5 +1,4 @@
-import styles from "./StatusSelection.module.scss";
-import ChevronDown from "../../assets/icon-chevron-down.svg";
+import { ReactComponent as ChevronDown } from "../../assets/icon-chevron-down.svg";
 import { IColumn } from "../../models/IColumn";
 
 type Props = {
@@ -17,7 +16,7 @@ const StatusSelection = (props: Props) => {
   const options = columns.map(({ name }, id) => (
     <p
       key={id}
-      className={styles.option}
+      className="status-sel_option"
       onClick={(e: any) => changeStatus(e.target.innerText)}
     >
       {name}
@@ -26,21 +25,19 @@ const StatusSelection = (props: Props) => {
 
   return (
     <>
-      <div className={styles.status_container}>
+      <div className="status-sel_container">
         <input
+          className={`status-sel_current ${
+            statusListIsOpen && "status_sel-open"
+          }`}
           value={status}
           type="text"
           readOnly
           onClick={() => toggleStatus()}
-          className={`${styles.current_option} ${
-            statusListIsOpen && styles.open
-          }`}
         />
-        <img src={ChevronDown} alt="" />
+        <ChevronDown />
       </div>
-      {statusListIsOpen && (
-        <div className={styles.status_options}>{options}</div>
-      )}
+      {statusListIsOpen && <div className="status-sel_options">{options}</div>}
     </>
   );
 };

@@ -1,5 +1,4 @@
 import Cross from "../../assets/icon-cross.svg";
-import styles from "./EditableList.module.scss";
 
 interface Props {
   id: string;
@@ -14,7 +13,7 @@ const EditableList = (props: Props) => {
   const { updateText, remove } = props;
 
   return (
-    <div className={styles.item}>
+    <div className="editable-list_item">
       <input
         value={text}
         onChange={(e) => updateText(e.target.value)}

@@ -1,5 +1,4 @@
 import Modal from "../../components/Modals/Modal";
-import styles from "./DeleteType.module.scss";
 
 interface Props {
   type: "task" | "board";
@@ -22,16 +21,16 @@ const DeleteType = (props: Props) => {
 
   return (
     <Modal>
-      <h3 className={styles.header}>Delete this {type}?</h3>
-      <p className={styles.text}>
+      <h3 className="delete-type_title">Delete this {type}?</h3>
+      <p className="delete-type_text">
         Are you sure you want to delete the '{title}' {fillerText()}
       </p>
 
-      <div className={styles.btns_container}>
-        <button onClick={() => deleteThisItem()} className={styles.delete}>
+      <div className="delete-type_btns-container">
+        <button className="delete-type_delete" onClick={() => deleteThisItem()}>
           Delete
         </button>
-        <button onClick={() => dontDelete()} className={styles.cancel}>
+        <button className="delete-type_cancel" onClick={() => dontDelete()}>
           Cancel
         </button>
       </div>

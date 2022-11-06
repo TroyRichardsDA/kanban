@@ -1,6 +1,6 @@
 @use "../../styles/variables.scss" as *;
 
-.header {
+.header_container {
   padding: 20px 16px;
   display: flex;
   align-items: center;
@@ -8,7 +8,7 @@
   background-color: white;
 }
 
-.header__left {
+.header_left {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -29,7 +29,7 @@
   }
 }
 
-.header__right {
+.header_right {
   position: relative;
   display: flex;
   align-items: center;
@@ -52,7 +52,7 @@
     border: none;
   }
 
-  .ellipsis {
+  svg {
     cursor: pointer;
   }
 }

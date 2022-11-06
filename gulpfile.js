@@ -4,7 +4,7 @@ const prefixer = require("gulp-autoprefixer");
 const minify = require("gulp-clean-css");
 
 function compilescss() {
-  return src("src/styles/*.scss", "src/**/**/*.module.scss")
+  return src("src/styles/*.scss", "src/**/**/*.scss")
     .pipe(sass())
     .pipe(prefixer())
     .pipe(minify())
@@ -12,7 +12,7 @@ function compilescss() {
 }
 
 function watchTask() {
-  watch(["src/styles/*.scss", "src/**/**/*.module.scss"], compilescss);
+  watch(["src/styles/*.scss", "src/**/**/*.scss"], compilescss);
 }
 
 exports.default = series(compilescss, watchTask);

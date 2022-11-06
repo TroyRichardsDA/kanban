@@ -1,4 +1,20 @@
+// Abstracts
 @use "./variables.scss";
 @use "./global.scss";
-@use "./editors.module.scss";
 @use "./resets";
+
+// Components
+@use "../components/BoardsNav/BoardsNav";
+@use "../components/Column/Column";
+@use "../components/EditableList/EditableList";
+@use "../components/MiniModal/MiniModal";
+@use "../components/StatusSelection/StatusSelection";
+@use "../components/Modals/Modal";
+@use "../components/Task/Task";
+
+// Features
+@use "../features/Board/Board";
+@use "../features/ViewTask/ViewTask";
+@use "../features/Header/Header";
+@use "../features/DeleteType/DeleteType";
+@use "./editors";

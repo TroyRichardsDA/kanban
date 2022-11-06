@@ -1,31 +1,31 @@
 @use "../../styles/variables.scss" as *;
 
-.status_container {
+.status-sel_container {
   position: relative;
 
-  .current_option:hover,
-  img {
+  .status-sel_current:hover,
+  svg {
     cursor: pointer;
   }
 
-  .open {
+  .status-sel_open {
     border-color: $primary;
   }
 
-  img {
+  svg {
     position: absolute;
     top: 18px;
     right: 12px;
   }
 }
 
-.status_options {
+.status-sel_options {
   width: 100%;
   padding: 8px 16px;
   color: $grey !important;
 }
 
-.option {
+.status-sel_option {
   width: 100%;
 
   &:hover {

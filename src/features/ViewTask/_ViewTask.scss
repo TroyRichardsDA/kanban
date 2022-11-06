@@ -1,53 +1,53 @@
 @use "../../styles/variables.scss" as *;
 @use "../../styles/global.scss" as *;
 
-.header {
+.view-task_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
 }
 
-.title {
+.view-task_title {
   width: 90%;
   font-size: 18px;
   font-weight: 700;
   line-height: 23px;
 }
 
-.description {
+.view-task_description {
   font-weight: 500;
   font-size: 13px;
   line-height: 23px;
   color: $grey;
 }
 
-.subtitle {
+.view-task_subtitle {
   font-weight: 700;
   font-size: 12px;
   line-height: 15px;
   color: $grey;
 }
 
-.subtasks {
+.view-task_subtasks {
   margin-top: 16px;
   display: grid;
   gap: 8px;
 }
 
-.completed {
+.view-task_completed {
   text-decoration: line-through;
   opacity: 0.5;
 }
 
-.subtask {
+.view-task_subtask {
   background-color: $lightBG;
   border-radius: 4px;
   padding: 14px 12px;
   display: flex;
   gap: 16px;
 
-  .checkbox {
+  .view-task_checkbox {
     cursor: pointer;
     accent-color: $primary;
   }

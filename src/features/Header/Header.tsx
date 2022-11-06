@@ -1,9 +1,8 @@
 import { ReactComponent as ChevronDown } from "../../assets/icon-chevron-down.svg";
 import { ReactComponent as ChevronUp } from "../../assets/icon-chevron-up.svg";
-import MobileLogo from "../../assets/logo-mobile.svg";
-import Ellipsis from "../../assets/icon-vertical-ellipsis.svg";
-import Plus from "../../assets/icon-add-task-mobile.svg";
-import styles from "./Header.module.scss";
+import { ReactComponent as Ellipsis } from "../../assets/icon-vertical-ellipsis.svg";
+import { ReactComponent as MobileLogo } from "../../assets/logo-mobile.svg";
+import { ReactComponent as Plus } from "../../assets/icon-add-task-mobile.svg";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import {
   populatePassedData,
@@ -41,28 +40,23 @@ function Header() {
   }
 
   return (
-    <nav className={styles.header}>
-      <div className={styles.header__left}>
-        <img src={MobileLogo} alt="" />
-        <div className={styles.board_name} onClick={toggleAllBoards}>
+    <nav className="header_container">
+      <div className="header_left">
+        <MobileLogo />
+        <div onClick={toggleAllBoards}>
           <h2>{currentBoard.name}</h2>
           {allBoardsModalIsOpen ? <ChevronUp /> : <ChevronDown />}
         </div>
       </div>
-      <div className={styles.header__right}>
+      <div className="header_right">
         <button
           onClick={() => dispatch(toggleTaskEditor(true))}
           disabled={noColumns ? true : false}
-          className={noColumns ? styles.dimmed : ""}
+          className={noColumns ? "dimmed" : ""}
         >
-          <img src={Plus} alt="" />
+          <Plus />
         </button>
-        <img
-          onClick={() => dispatch(toggleBoardMiniModal())}
-          className={styles.ellipsis}
-          src={Ellipsis}
-          alt=""
-        />
+        <Ellipsis onClick={() => dispatch(toggleBoardMiniModal())} />
         {boardMiniModalIsOpen && (
           <MiniModal
             type="Board"

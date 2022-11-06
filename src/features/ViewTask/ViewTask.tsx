@@ -1,4 +1,4 @@
-import Ellipsis from "../../assets/icon-vertical-ellipsis.svg";
+import { ReactComponent as Ellipsis } from "../../assets/icon-vertical-ellipsis.svg";
 import MiniModal from "../../components/MiniModal/MiniModal";
 import Modal from "../../components/Modals/Modal";
 import StatusSelection from "../../components/StatusSelection/StatusSelection";
@@ -16,7 +16,6 @@ import {
   toggleTaskMiniModal,
 } from "../../context/modals";
 import { ITask } from "../../models/ITask";
-import styles from "./ViewTask.module.scss";
 
 interface Props {
   task: ITask;
@@ -52,14 +51,14 @@ function ViewTask(props: Props) {
     }
 
     return (
-      <div className={styles.subtask} key={id}>
+      <div className="view-task_subtask" key={id}>
         <input
           onChange={(e) => updateCompleted(e)}
           type="checkbox"
           checked={isCompleted}
-          className={styles.checkbox}
+          className="view-task_checkbox"
         />
-        <label className={`${isCompleted && styles.completed}`}>
+        <label className={`${isCompleted && "view-task_completed"}`}>
           {subtask.title}
         </label>
       </div>
@@ -98,9 +97,9 @@ function ViewTask(props: Props) {
 
   return (
     <Modal toggle={closeModal}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>{title}</h2>
-        <img onClick={openMiniModal} src={Ellipsis} alt="" />
+      <div className="view-task_header">
+        <h2 className="view-task_title">{title}</h2>
+        <Ellipsis onClick={openMiniModal} />
         {taskMiniModalIsOpen && (
           <MiniModal
             editType={openEditTask}
@@ -109,15 +108,15 @@ function ViewTask(props: Props) {
           />
         )}
       </div>
-      <p className={styles.description}>{description}</p>
+      <p className="view-task_description">{description}</p>
       <div>
-        <h3 className={styles.subtitle}>
+        <h3 className="view-task_subtitle">
           Subtasks ({subtasksComplete} of {subtasks.length})
         </h3>
-        <div className={styles.subtasks}>{subtasksList}</div>
+        <div className="view-task_subtasks">{subtasksList}</div>
       </div>
-      <div className={styles.status}>
-        <h3 className={styles.subtitle}>Current Status</h3>
+      <div className="view-task_status">
+        <h3 className="view-task_subtitle">Current Status</h3>
         <StatusSelection
           status={status}
           statusListIsOpen={statusListIsOpen}

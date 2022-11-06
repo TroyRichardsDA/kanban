@@ -1,5 +1,4 @@
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
-import styles from "./_BoardsNav.module.scss";
 import { ReactComponent as BoardIcon } from "../../assets/icon-board.svg";
 import { ReactComponent as LightTheme } from "../../assets/icon-light-theme.svg";
 import { ReactComponent as DarkTheme } from "../../assets/icon-dark-theme.svg";
@@ -33,8 +32,8 @@ const BoardsNav = () => {
   const allBoards = boards.map((board) => (
     <div
       key={board.id}
-      className={`${styles.singleBoard} ${
-        board.isCurrent && styles.currentBoard
+      className={`boards-nav_board-name ${
+        board.isCurrent && "boards-nav_current"
       }`}
     >
       <BoardIcon />
@@ -45,27 +44,24 @@ const BoardsNav = () => {
   ));
 
   return (
-    <div className={styles.allBoards}>
+    <div className="boards-nav_container">
       <Modal isAllBoardsModal={true}>
-        <div className={styles.row}>
+        <div>
           <h3>All boards ({boards.length}) </h3>
-          <div className={styles.boards_list}>
+          <div className="boards-nav_list">
             {allBoards}
-            <div className={styles.createNew_container}>
+            <div className="boards-nav_list--create-new">
               <BoardIcon />
-              <button
-                className={styles.btn}
-                onClick={(e) => openBoardsEditor(e)}
-              >
+              <button onClick={(e) => openBoardsEditor(e)}>
                 + Create New Board
               </button>
             </div>
           </div>
 
-          <div className={styles.theme_switcher}>
+          <div className="boards-nav_theme-switcher">
             <LightTheme />
 
-            <label className={styles.switch}>
+            <label>
               <input onClick={() => toggleTheme()} type="checkbox" />
               <span style={currentTheme}></span>
             </label>
