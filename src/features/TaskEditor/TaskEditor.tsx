@@ -20,7 +20,6 @@ import Modal from "../../components/Modals/Modal";
 import { nanoid } from "@reduxjs/toolkit";
 import EditableList from "../../components/EditableList/EditableList";
 import StatusSelection from "../../components/StatusSelection/StatusSelection";
-import styles from "../../styles/editors.module.scss";
 
 const TaskEditor = () => {
   const { boards } = useAppSelector((state) => state.boards);
@@ -117,9 +116,9 @@ const TaskEditor = () => {
 
   return (
     <Modal toggle={closeModal}>
-      <h3 className={styles.header}>{passedData ? "Edit" : "Add New"} Task</h3>
-      <form className={styles.form} onSubmit={(e) => sendNewTask(e)}>
-        <label className={styles.label}>
+      <h3 className="editor_header">{passedData ? "Edit" : "Add New"} Task</h3>
+      <form className="editor_form" onSubmit={(e) => sendNewTask(e)}>
+        <label className="editor_label">
           Title
           <input
             onChange={(e) => dispatch(updateTitle(e.target.value))}
@@ -128,7 +127,7 @@ const TaskEditor = () => {
             type="text"
           />
         </label>
-        <label className={styles.label}>
+        <label className="editor_label">
           Description
           <textarea
             onChange={(e) => dispatch(updateDescription(e.target.value))}
@@ -137,13 +136,12 @@ const TaskEditor = () => {
             placeholder="e.g. It's always good to take a break."
           />
         </label>
-        <label className={styles.label}> Subtasks {subtasksList}</label>
-        <button className={styles.addNew} onClick={(e) => addNewSubtask(e)}>
-          {" "}
-          + Add New Subtask{" "}
+        <label className="editor_label"> Subtasks {subtasksList}</label>
+        <button className="editor_add-new" onClick={(e) => addNewSubtask(e)}>
+          + Add New Subtask
         </button>
-        <label className={styles.label}>
-          Status{" "}
+        <label className="editor_label">
+          Status
           <StatusSelection
             status={status}
             statusListIsOpen={statusListIsOpen}
@@ -153,7 +151,7 @@ const TaskEditor = () => {
           />{" "}
         </label>
 
-        <button className={styles.submitButton} type="submit">
+        <button className="editor_submit-btn" type="submit">
           {passedData ? "Save Changes" : "Create Task"}
         </button>
       </form>

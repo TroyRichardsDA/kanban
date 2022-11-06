@@ -6,7 +6,6 @@ import { addNewBoard, editBoard } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import { resetModalsSlice, toggleBoardsEditor } from "../../context/modals";
 import { IBoard } from "../../models/IBoard";
-import styles from "../../styles/editors.module.scss";
 import {
   addColumn,
   populateBoardsEditor,
@@ -93,9 +92,9 @@ const BoardsEditor = () => {
 
   return (
     <Modal toggle={closeModal}>
-      <h3 className={styles.header}>{passedData ? "Edit" : "Add New"} Board</h3>
-      <form className={styles.form} onSubmit={(e) => sendBoard(e)}>
-        <label className={styles.label}>
+      <h3 className="editor_header">{passedData ? "Edit" : "Add New"} Board</h3>
+      <form className="editor_form" onSubmit={(e) => sendBoard(e)}>
+        <label className="editor_label">
           Board Name
           <input
             value={name}
@@ -103,14 +102,14 @@ const BoardsEditor = () => {
             type="text"
           />
         </label>
-        <label className={styles.label}>
+        <label className="editor_label">
           Board Columns
           {boardColumns}
         </label>
-        <button className={styles.addNew} onClick={(e) => addNewColumn(e)}>
+        <button className="editor_add-new" onClick={(e) => addNewColumn(e)}>
           + Add New Column
         </button>
-        <button className={styles.submitButton} type="submit">
+        <button className="editor_submit-btn" type="submit">
           {passedData ? "Save Changes" : "Create New Board"}
         </button>
       </form>

@@ -12,7 +12,7 @@ function compilescss() {
 }
 
 function watchTask() {
-  watch(["src/styles/*.scss", "src/styles/**/*.scss"], compilescss);
+  watch(["src/styles/*.scss", "src/**/**/*.module.scss"], compilescss);
 }
 
 exports.default = series(compilescss, watchTask);

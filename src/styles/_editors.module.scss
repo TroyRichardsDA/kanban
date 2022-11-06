@@ -1,21 +1,21 @@
 @use "./variables.scss" as *;
 @use "./global.scss" as *;
 
-.header {
+.editor_header {
   font-size: 18px;
   line-height: 23px;
 }
 
-.form {
+.editor_form {
   display: grid;
   gap: 24px;
 }
 
-.label {
+.editor_label {
   @include label;
 }
 
-.addNew {
+.editor_add-new {
   color: $primary;
   font-weight: 700;
   line-height: 23px;
@@ -25,7 +25,7 @@
   border-radius: 210px;
 }
 
-.submitButton {
+.editor_submit-btn {
   display: flex;
   align-items: center;
   justify-content: center;

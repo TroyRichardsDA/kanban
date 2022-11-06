@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
-import styles from "./BoardsNav.module.scss";
+import styles from "./_BoardsNav.module.scss";
 import { ReactComponent as BoardIcon } from "../../assets/icon-board.svg";
 import { ReactComponent as LightTheme } from "../../assets/icon-light-theme.svg";
 import { ReactComponent as DarkTheme } from "../../assets/icon-dark-theme.svg";
