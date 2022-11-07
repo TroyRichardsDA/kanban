@@ -2,6 +2,7 @@
 @use "./variables.scss";
 @use "./global.scss";
 @use "./resets";
+@use "./app";
 
 // Components
 @use "../components/BoardsNav/BoardsNav";
@@ -18,3 +19,6 @@
 @use "../features/Header/Header";
 @use "../features/DeleteType/DeleteType";
 @use "./editors";
+
+// Utils
+@use "./theme";

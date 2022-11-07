@@ -1,0 +1,77 @@
+@use "./variables" as *;
+
+.dark {
+  .app {
+    background-color: $darkBG;
+  }
+
+  /*        HEADER       */
+  .header_container {
+    color: white;
+    background-color: $darkGrey;
+  }
+
+  /*        BOARD        */
+  .board_new-column {
+    background: linear-gradient(
+      180deg,
+      rgba(43, 44, 55, 0.25) 0%,
+      rgba(43, 44, 55, 0.125) 100%
+    );
+  }
+
+  /*         MODAL       */
+  .modal_container {
+    background-color: $darkGrey;
+    color: white;
+  }
+
+  /*        MINI MODAL   */
+  .mini-modal_bg {
+    background-color: $darkBG;
+  }
+
+  /*        EDITORS      */
+  .editor_label {
+    color: white;
+
+    input,
+    textarea {
+      color: white;
+
+      &::placeholder {
+        color: white;
+      }
+    }
+  }
+
+  .editor_add-new {
+    background-color: white;
+  }
+
+  /*        TASK         */
+  .task_container {
+    background-color: $darkGrey;
+    color: white;
+  }
+
+  /*        VIEW TASK        */
+  .view-task_subtask {
+    background-color: $darkBG;
+  }
+
+  .view-task_status input {
+    color: white;
+  }
+
+  /*        BOARDS NAV       */
+  .boards-nav_theme-switcher {
+    background-color: $darkBG;
+  }
+
+  /*        DELETE TYPE      */
+
+  .delete-type_cancel {
+    background-color: white;
+  }
+}

@@ -1,4 +1,3 @@
-import "./App.scss";
 import Header from "./features/Header/Header";
 import Board from "./features/Board/Board";
 import { useAppDispatch, useAppSelector } from "./context/hooks";
@@ -15,7 +14,6 @@ function App() {
   const { deleteTypeIsOpen, passedData } = useAppSelector(
     (state) => state.modals
   );
-  const { isDarkMode } = useAppSelector((state) => state.theme);
   const dispatch = useAppDispatch();
 
   function typeCheck() {
@@ -44,7 +42,7 @@ function App() {
   }
 
   return (
-    <div className={`App ${isDarkMode && "dark"}`}>
+    <div className={`app`}>
       <Header />
       <Board />
       {deleteTypeIsOpen && (

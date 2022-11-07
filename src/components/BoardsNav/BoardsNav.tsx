@@ -6,6 +6,7 @@ import Modal from "../Modals/Modal";
 import { toggleAllBoardsModal, toggleBoardsEditor } from "../../context/modals";
 import { changeBoard } from "../../context/boards";
 import { toggleDarkMode } from "../../context/theme";
+import { useEffect } from "react";
 
 const BoardsNav = () => {
   const { boards } = useAppSelector((state) => state.boards);
@@ -28,6 +29,14 @@ const BoardsNav = () => {
   function toggleTheme() {
     dispatch(toggleDarkMode());
   }
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, [isDarkMode]);
 
   const allBoards = boards.map((board) => (
     <div
