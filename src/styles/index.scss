@@ -1,8 +1,10 @@
 // Abstracts
-@use "./variables.scss";
-@use "./global.scss";
-@use "./resets";
-@use "./app";
+@use "./abstracts/variables";
+@use "./abstracts/global";
+
+// Base
+@use "./base/resets";
+@use "./base/app";
 
 // Components
 @use "../components/BoardsNav/BoardsNav";
@@ -18,7 +20,8 @@
 @use "../features/ViewTask/ViewTask";
 @use "../features/Header/Header";
 @use "../features/DeleteType/DeleteType";
-@use "./editors";
+@use "./shared/editors";
 
 // Utils
-@use "./theme";
+@use "./utils/breakpoints";
+@use "./utils/theme";

@@ -1,5 +1,5 @@
-@use "../../styles/variables.scss" as *;
-@use "../../styles/global.scss" as *;
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/global" as *;
 
 .view-task_header {
   display: flex;
