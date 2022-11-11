@@ -3,8 +3,8 @@
 @use "./abstracts/global";
 
 // Base
-@use "./base/resets";
 @use "./base/app";
+@use "./base/resets";
 
 // Components
 @use "../components/BoardsNav/BoardsNav";
@@ -21,6 +21,7 @@
 @use "../features/Header/Header";
 @use "../features/DeleteType/DeleteType";
 @use "./shared/editors";
+@use "../features/Sidebar/Sidebar";
 
 // Utils
 @use "./utils/breakpoints";

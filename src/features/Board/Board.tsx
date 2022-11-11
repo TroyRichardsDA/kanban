@@ -1,17 +1,25 @@
+import { ReactComponent as Show } from "../../assets/icon-show-sidebar.svg";
 import { addColumnToBoard } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import Column from "../../components/Column/Column";
-import BoardsNav from "../../components/BoardsNav/BoardsNav";
+import MobileBoardsNav from "../MobileBoardsNav/MobileBoardsNav";
+import { toggleSideBar } from "../../context/modals";
 
 const Board = () => {
   const { boards } = useAppSelector((state) => state.boards);
-  const { allBoardsModalIsOpen } = useAppSelector((state) => state.modals);
+  const { allBoardsModalIsOpen, sideBarIsOpen } = useAppSelector(
+    (state) => state.modals
+  );
   const currentBoard = boards.find((board) => board.isCurrent)!;
   const boardColumnsLength = currentBoard.columns.length;
   const dispatch = useAppDispatch();
 
   function addtoColumns() {
     dispatch(addColumnToBoard());
+  }
+
+  function openSidebar(e: any) {
+    dispatch(toggleSideBar(true));
   }
 
   return (
@@ -37,8 +45,12 @@ const Board = () => {
           </>
         )}
       </>
-
-      {allBoardsModalIsOpen && <BoardsNav />}
+      {!sideBarIsOpen && (
+        <button onClick={(e) => openSidebar(e)} className="board_show-sidebar">
+          <Show />
+        </button>
+      )}
+      {allBoardsModalIsOpen && <MobileBoardsNav />}
     </main>
   );
 };

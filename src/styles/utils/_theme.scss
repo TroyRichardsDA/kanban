@@ -1,4 +1,4 @@
-@use "./variables" as *;
+@use "../abstracts/variables" as *;
 
 .dark {
   .app {
@@ -6,9 +6,15 @@
   }
 
   /*        HEADER       */
+  .header_logo {
+    background-color: $darkGrey;
+    border-color: $linesDark;
+  }
+
   .header_container {
     color: white;
     background-color: $darkGrey;
+    border-color: $linesDark;
   }
 
   /*        BOARD        */
@@ -73,5 +79,11 @@
 
   .delete-type_cancel {
     background-color: white;
+  }
+
+  /*        SIDEBAR        */
+  .sidebar {
+    background-color: $darkGrey;
+    border-right-color: $linesDark;
   }
 }

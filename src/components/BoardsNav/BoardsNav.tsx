@@ -2,7 +2,6 @@ import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import { ReactComponent as BoardIcon } from "../../assets/icon-board.svg";
 import { ReactComponent as LightTheme } from "../../assets/icon-light-theme.svg";
 import { ReactComponent as DarkTheme } from "../../assets/icon-dark-theme.svg";
-import Modal from "../Modals/Modal";
 import { toggleAllBoardsModal, toggleBoardsEditor } from "../../context/modals";
 import { changeBoard } from "../../context/boards";
 import { toggleDarkMode } from "../../context/theme";
@@ -54,30 +53,26 @@ const BoardsNav = () => {
 
   return (
     <div className="boards-nav_container">
-      <Modal isAllBoardsModal={true}>
-        <div>
-          <h3>All boards ({boards.length}) </h3>
-          <div className="boards-nav_list">
-            {allBoards}
-            <div className="boards-nav_list--create-new">
-              <BoardIcon />
-              <button onClick={(e) => openBoardsEditor(e)}>
-                + Create New Board
-              </button>
-            </div>
-          </div>
-
-          <div className="boards-nav_theme-switcher">
-            <LightTheme />
-
-            <label>
-              <input onClick={() => toggleTheme()} type="checkbox" />
-              <span style={currentTheme}></span>
-            </label>
-            <DarkTheme />
-          </div>
+      <h3>All boards ({boards.length}) </h3>
+      <div className="boards-nav_list">
+        {allBoards}
+        <div className="boards-nav_list--create-new">
+          <BoardIcon />
+          <button onClick={(e) => openBoardsEditor(e)}>
+            + Create New Board
+          </button>
         </div>
-      </Modal>
+      </div>
+
+      <div className="boards-nav_theme-switcher">
+        <LightTheme />
+
+        <label>
+          <input onClick={() => toggleTheme()} type="checkbox" />
+          <span style={currentTheme}></span>
+        </label>
+        <DarkTheme />
+      </div>
     </div>
   );
 };

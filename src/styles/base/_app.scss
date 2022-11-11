@@ -1,10 +1,24 @@
-@use "./variables.scss" as *;
+@use "../abstracts/variables" as *;
+@use "../utils/breakpoints" as *;
 
 .app {
-  display: flex;
-  flex-direction: column;
   background-color: $lightBG;
   font-family: $baseFont;
   height: 100%;
   transition: 0.4s;
+}
+
+.app_main-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+}
+
+/*      TABLET     */
+@include breakpoint(tablet) {
+  .app {
+    display: flex;
+    flex-direction: row;
+  }
 }

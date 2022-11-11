@@ -1,5 +1,5 @@
-@use "./variables.scss" as *;
-@use "./global.scss" as *;
+@use "../abstracts/variables" as *;
+@use "../abstracts/global" as *;
 
 .editor_header {
   font-size: 18px;

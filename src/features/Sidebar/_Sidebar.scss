@@ -1,0 +1,41 @@
+@use "../../styles/utils/breakpoints" as *;
+@use "../../styles/abstracts/variables" as *;
+
+.sidebar {
+  display: none;
+  transition: 0.2s;
+}
+
+/*      TABLET       */
+
+@include breakpoint(tablet) {
+  .sidebar {
+    background-color: white;
+    width: 261px;
+    padding: 32px 24px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 54px;
+
+    border-right: 1px solid $lines;
+  }
+
+  .sidebar-content {
+    position: relative;
+    flex: 2;
+  }
+
+  .sidebar_hide {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: $grey;
+
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 19px;
+  }
+}

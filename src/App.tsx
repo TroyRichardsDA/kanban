@@ -6,11 +6,11 @@ import TaskEditor from "./features/TaskEditor/TaskEditor";
 import { resetModalsSlice, toggleDeleteModal } from "./context/modals";
 import { deleteBoard, deleteTask } from "./context/boards";
 import BoardsEditor from "./features/BoardsEditor/BoardsEditor";
+import Sidebar from "./features/Sidebar/Sidebar";
 
 function App() {
-  const { taskEditorIsOpen, boardsEditorIsOpen } = useAppSelector(
-    (state) => state.modals
-  );
+  const { taskEditorIsOpen, boardsEditorIsOpen, sideBarIsOpen } =
+    useAppSelector((state) => state.modals);
   const { deleteTypeIsOpen, passedData } = useAppSelector(
     (state) => state.modals
   );
@@ -43,19 +43,21 @@ function App() {
 
   return (
     <div className={`app`}>
-      <Header />
-      <Board />
-      {deleteTypeIsOpen && (
-        <DeleteType
-          dontDelete={dontDelete}
-          deleteThisItem={deleteThisItem}
-          title={passedData.title || passedData.name}
-          type={typeCheck()}
-        />
-      )}
-
-      {taskEditorIsOpen && <TaskEditor />}
-      {boardsEditorIsOpen && <BoardsEditor />}
+      {sideBarIsOpen && <Sidebar />}
+      <div className="app_main-content">
+        <Header />
+        <Board />
+        {deleteTypeIsOpen && (
+          <DeleteType
+            dontDelete={dontDelete}
+            deleteThisItem={deleteThisItem}
+            title={passedData.title || passedData.name}
+            type={typeCheck()}
+          />
+        )}
+        {taskEditorIsOpen && <TaskEditor />}
+        {boardsEditorIsOpen && <BoardsEditor />}
+      </div>
     </div>
   );
 }
