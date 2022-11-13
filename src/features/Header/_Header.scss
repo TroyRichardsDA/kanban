@@ -1,5 +1,6 @@
 @use "../../styles/abstracts/variables" as *;
 @use "../../styles/utils/breakpoints" as *;
+@use "../../styles/shared/typography" as *;
 
 .header_logo {
   display: none;
@@ -27,7 +28,7 @@
     cursor: pointer;
 
     h2 {
-      font-size: 18px;
+      @include HeadingL;
     }
 
     svg {

@@ -1,0 +1,39 @@
+@use "../abstracts/variables" as *;
+
+@mixin HeadersXL {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+@mixin HeadingL {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
+}
+
+@mixin HeadingM {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 19px;
+}
+
+@mixin HeadingS {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+}
+
+@mixin BodyL($FW) {
+  font-weight: $FW;
+  font-size: 13px;
+  line-height: 23px;
+}
+
+@mixin BodyM {
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 700;
+}

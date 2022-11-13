@@ -4,7 +4,11 @@ import EditableList from "../../components/EditableList/EditableList";
 import Modal from "../../components/Modals/Modal";
 import { addNewBoard, editBoard } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
-import { resetModalsSlice, toggleBoardsEditor } from "../../context/modals";
+import {
+  resetModalsSlice,
+  resetPassedData,
+  toggleBoardsEditor,
+} from "../../context/modals";
 import { IBoard } from "../../models/IBoard";
 import {
   addColumn,
@@ -35,7 +39,7 @@ const BoardsEditor = () => {
   function closeModal() {
     dispatch(toggleBoardsEditor(false));
     dispatch(resetBoardsEditor());
-    dispatch(resetModalsSlice());
+    dispatch(resetPassedData());
   }
 
   function sendBoard(e: any) {

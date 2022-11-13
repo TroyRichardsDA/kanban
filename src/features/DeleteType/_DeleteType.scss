@@ -1,14 +1,14 @@
 @use "../../styles/abstracts/variables" as *;
+@use "../../styles/shared/typography" as *;
 
 .delete-type_title {
+  @include HeadingL;
   color: $red;
 }
 
 .delete-type_text {
+  @include BodyL(500);
   color: $grey;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 23px;
 }
 
 .delete-type_btns-container {
@@ -17,13 +17,11 @@
   gap: 16px;
 
   button {
+    @include BodyL(700);
     cursor: pointer;
     border-radius: 20px;
     border: none;
     padding: 8px;
-    font-weight: 700;
-    font-size: 13px;
-    line-height: 23px;
     transition: 0.2s;
   }
 

@@ -1,4 +1,5 @@
 @use "../../styles/abstracts/variables" as *;
+@use "../../styles/shared/typography" as *;
 
 .task_container {
   background-color: white;
@@ -13,14 +14,10 @@
 }
 
 .task_title {
-  font-size: 15px;
-  line-height: 18px;
-  font-weight: 700;
+  @include HeadingM;
 }
 
 .task_subtasks {
+  @include BodyM;
   color: $grey;
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: 700;
 }

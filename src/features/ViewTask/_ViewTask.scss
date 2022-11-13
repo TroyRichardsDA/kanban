@@ -1,5 +1,6 @@
 @use "../../styles/abstracts/variables" as *;
 @use "../../styles/abstracts/global" as *;
+@use "../../styles/shared/typography" as *;
 
 .view-task_header {
   display: flex;
@@ -9,23 +10,17 @@
 }
 
 .view-task_title {
+  @include HeadingL;
   width: 90%;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 23px;
 }
 
 .view-task_description {
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 23px;
+  @include BodyL(500);
   color: $grey;
 }
 
 .view-task_subtitle {
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 15px;
+  @include BodyL(700);
   color: $grey;
 }
 
@@ -53,9 +48,7 @@
   }
 
   label {
-    font-size: 700;
-    font-size: 12px;
-    line-height: 15px;
+    @include BodyL(700);
   }
 }
 

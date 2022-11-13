@@ -1,4 +1,5 @@
 @use "../../styles/abstracts/variables" as *;
+@use "../../styles/shared/typography" as *;
 
 .column_container {
   min-width: 280px;
@@ -18,12 +19,8 @@
 }
 
 .column_title {
-  font-size: 12px;
+  @include HeadingS;
   color: $grey;
-  text-transform: uppercase;
-  line-height: 15px;
-  letter-spacing: 2.4px;
-  font-weight: 700;
 }
 
 .column_tasks {

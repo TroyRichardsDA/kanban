@@ -15,8 +15,10 @@ const BoardsNav = () => {
 
   function openBoardsEditor(e: any) {
     e.preventDefault();
-    dispatch(toggleAllBoardsModal());
     dispatch(toggleBoardsEditor(true));
+    if (window.innerWidth < 768) {
+      dispatch(toggleAllBoardsModal());
+    }
   }
 
   function changeCurrentBoard(boardID: string, isCurrent: boolean) {

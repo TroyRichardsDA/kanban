@@ -39,6 +39,9 @@ export const modalsSlice = createSlice({
     populatePassedData: (state, action) => {
       state.passedData = action.payload;
     },
+    resetPassedData: (state) => {
+      state.passedData = null;
+    },
     resetModalsSlice: () => initialState,
   },
 });
@@ -53,6 +56,7 @@ export const {
   toggleBoardMiniModal,
   toggleSideBar,
   toggleAllBoardsModal,
+  resetPassedData,
 } = modalsSlice.actions;
 
 export default modalsSlice.reducer;
