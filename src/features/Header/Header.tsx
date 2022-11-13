@@ -22,11 +22,12 @@ function Header() {
     useAppSelector((state) => state.modals);
   const { isDarkMode } = useAppSelector((state) => state.theme);
   const currentBoard = boards.find((board) => board.isCurrent)!;
+  const isMobileScreen = window.innerWidth < 768;
   const noColumns = currentBoard.columns.length === 0;
   const dispatch = useAppDispatch();
 
   function toggleAllBoards() {
-    if (window.innerWidth < 768) {
+    if (isMobileScreen) {
       dispatch(toggleAllBoardsModal());
     }
   }
@@ -64,7 +65,7 @@ function Header() {
             disabled={noColumns ? true : false}
             className={noColumns ? "dimmed" : ""}
           >
-            <Plus />
+            <Plus /> <span>+ Add New Task</span>
           </button>
           <Ellipsis onClick={() => dispatch(toggleBoardMiniModal())} />
           {boardMiniModalIsOpen && (

@@ -1,8 +1,13 @@
 @use "./variables.scss" as *;
 @use "../shared/typography" as *;
 
-#root {
+html {
   height: 100vh;
+
+  #root,
+  body {
+    height: 100%;
+  }
 }
 
 @mixin label {

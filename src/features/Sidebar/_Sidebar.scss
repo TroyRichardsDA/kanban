@@ -1,5 +1,6 @@
 @use "../../styles/utils/breakpoints" as *;
 @use "../../styles/abstracts/variables" as *;
+@use "../../styles/shared//typography" as *;
 
 .sidebar {
   display: none;
@@ -27,15 +28,12 @@
   }
 
   .sidebar_hide {
+    @include HeadingM;
     background-color: transparent;
     border: none;
     display: flex;
     align-items: center;
     gap: 10px;
     color: $grey;
-
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 19px;
   }
 }

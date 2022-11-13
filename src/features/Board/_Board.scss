@@ -4,15 +4,11 @@
 
 .board_container {
   position: relative;
-  flex: 2;
   padding: 24px 16px;
   display: flex;
+  height: 100%;
+  width: 100%;
   gap: 24px;
-  overflow-x: scroll;
-
-  &::-webkit-scrollbar {
-    height: 0px;
-  }
 }
 
 .board_empty {
@@ -44,6 +40,15 @@
       padding: 14px 18px;
       border-radius: 24px;
     }
+  }
+}
+
+.board_columns-container {
+  display: flex;
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+    height: 0px;
   }
 }
 

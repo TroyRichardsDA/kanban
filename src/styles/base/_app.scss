@@ -2,6 +2,8 @@
 @use "../utils/breakpoints" as *;
 
 .app {
+  display: flex;
+  flex-direction: column;
   background-color: $lightBG;
   font-family: $baseFont;
   height: 100%;
@@ -11,14 +13,14 @@
 .app_main-content {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  flex: 1;
+  overflow: hidden;
+  width: 100%;
 }
 
 /*      TABLET     */
 @include breakpoint(tablet) {
   .app {
-    display: flex;
     flex-direction: row;
+    max-width: 100%;
   }
 }

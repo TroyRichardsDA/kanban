@@ -24,7 +24,9 @@ const Board = () => {
 
   return (
     <main
-      className={`board_container ${boardColumnsLength === 0 && "board_empty"}`}
+      className={`board_container ${
+        boardColumnsLength === 0 ? "board_empty" : ""
+      }`}
     >
       {boardColumnsLength === 0 && (
         <div className="board_empty--content">
@@ -33,7 +35,7 @@ const Board = () => {
         </div>
       )}
 
-      <>
+      <div className="board_columns-container">
         {boardColumnsLength > 0 && (
           <>
             {currentBoard.columns.map(({ id, name, tasks }) => (
@@ -44,7 +46,7 @@ const Board = () => {
             </div>
           </>
         )}
-      </>
+      </div>
       {!sideBarIsOpen && (
         <button onClick={(e) => openSidebar(e)} className="board_show-sidebar">
           <Show />
