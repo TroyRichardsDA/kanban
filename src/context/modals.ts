@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { ISubTask } from "../models/ISubtask";
 
 const initialState = {
   taskEditorIsOpen: false,
   sideBarIsOpen: true,
   boardsEditorIsOpen: false,
+  viewTaskIsOpen: false,
   deleteTypeIsOpen: false,
   taskMiniModalIsOpen: false,
   boardMiniModalIsOpen: false,
@@ -27,6 +29,9 @@ export const modalsSlice = createSlice({
     toggleBoardMiniModal: (state) => {
       state.boardMiniModalIsOpen = !state.boardMiniModalIsOpen;
     },
+    toggleViewTask: (state, action) => {
+      state.viewTaskIsOpen = action.payload;
+    },
     toggleDeleteModal: (state, action) => {
       state.deleteTypeIsOpen = action.payload;
     },
@@ -43,12 +48,21 @@ export const modalsSlice = createSlice({
       state.passedData = null;
     },
     resetModalsSlice: () => initialState,
+    updateSubTask: (state, action) => {
+      const { id, bool } = action.payload;
+      const currentSubtask = state.passedData.subtasks.find(
+        (subtask: ISubTask) => subtask.id === id
+      )!;
+
+      currentSubtask.isCompleted = bool;
+    },
   },
 });
 
 export const {
   toggleTaskEditor,
   toggleBoardsEditor,
+  toggleViewTask,
   toggleDeleteModal,
   populatePassedData,
   resetModalsSlice,
@@ -57,6 +71,7 @@ export const {
   toggleSideBar,
   toggleAllBoardsModal,
   resetPassedData,
+  updateSubTask,
 } = modalsSlice.actions;
 
 export default modalsSlice.reducer;

@@ -1,5 +1,5 @@
-import { toggleViewTask } from "../../context/boards";
 import { useAppDispatch } from "../../context/hooks";
+import { populatePassedData, toggleViewTask } from "../../context/modals";
 import ViewTask from "../../features/ViewTask/ViewTask";
 import { ITask } from "../../models/ITask";
 
@@ -9,7 +9,7 @@ type Props = {
 
 function Task(props: Props) {
   const { task } = props;
-  const { title, subtasks, status, viewTask } = task;
+  const { title, subtasks, viewTask } = task;
   const dispatch = useAppDispatch();
 
   const subtasksComplete = subtasks.filter(
@@ -17,7 +17,8 @@ function Task(props: Props) {
   ).length;
 
   function openTask() {
-    dispatch(toggleViewTask({ task, status, bool: true }));
+    dispatch(toggleViewTask(true));
+    dispatch(populatePassedData(task));
   }
 
   function preventChild(e: any) {
@@ -30,9 +31,7 @@ function Task(props: Props) {
       <p className="task_subtasks">
         {subtasksComplete} of {subtasks.length} subtasks
       </p>
-      <div onClick={(e) => preventChild(e)}>
-        {viewTask && <ViewTask task={task} />}
-      </div>
+      <div onClick={(e) => preventChild(e)}>{viewTask && <ViewTask />}</div>
     </div>
   );
 }

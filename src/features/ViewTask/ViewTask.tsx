@@ -4,26 +4,25 @@ import Modal from "../../components/Modals/Modal";
 import StatusSelection from "../../components/StatusSelection/StatusSelection";
 import {
   changeTaskStatus,
+  editTask,
   toggleTaskStatusList,
-  toggleViewTask,
   updateSubTaskIsComplete,
 } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import {
   populatePassedData,
+  resetPassedData,
   toggleDeleteModal,
   toggleTaskEditor,
   toggleTaskMiniModal,
+  toggleViewTask,
+  updateSubTask,
 } from "../../context/modals";
-import { ITask } from "../../models/ITask";
+import { ISubTask } from "../../models/ISubtask";
 
-interface Props {
-  task: ITask;
-}
-
-function ViewTask(props: Props) {
-  const { task } = props;
-  const { title, subtasks, description, status, statusListIsOpen } = task;
+function ViewTask() {
+  const { passedData } = useAppSelector((state) => state.modals);
+  const { title, subtasks, description, status, statusListIsOpen } = passedData;
   const { taskMiniModalIsOpen } = useAppSelector((state) => state.modals);
   const dispatch = useAppDispatch();
 
@@ -32,20 +31,26 @@ function ViewTask(props: Props) {
   ).boards.find((board) => board.isCurrent)?.columns!;
 
   const subtasksComplete = subtasks.filter(
-    (subtask) => subtask.isCompleted
+    (subtask: ISubTask) => subtask.isCompleted
   ).length;
 
-  const subtasksList = subtasks.map((subtask, id) => {
+  const subtasksList = subtasks.map((subtask: ISubTask, id: string) => {
     const { isCompleted } = subtask;
 
     function updateCompleted(e: any) {
       if (e.target.checked) {
         dispatch(
-          updateSubTaskIsComplete({ task, status, id: subtask.id, bool: true })
+          updateSubTask({
+            id: subtask.id,
+            bool: true,
+          })
         );
       } else {
         dispatch(
-          updateSubTaskIsComplete({ task, status, id: subtask.id, bool: false })
+          updateSubTask({
+            id: subtask.id,
+            bool: false,
+          })
         );
       }
     }
@@ -66,29 +71,35 @@ function ViewTask(props: Props) {
   });
 
   function closeModal() {
-    dispatch(toggleViewTask({ task, status, bool: false }));
+    dispatch(toggleViewTask(false));
+    dispatch(editTask({ task: passedData, status: passedData.status }));
+    dispatch(resetPassedData());
   }
 
   function changeStatus(newStatus: string) {
     if (newStatus !== status) {
-      dispatch(changeTaskStatus({ newStatus, prev: status, task }));
+      dispatch(changeTaskStatus({ newStatus, prev: status, passedData }));
     }
   }
 
   function toggleStatusList() {
-    dispatch(toggleTaskStatusList({ task, status }));
+    dispatch(toggleTaskStatusList({ passedData, status }));
   }
 
   function openDeleteModal() {
+    dispatch(toggleTaskMiniModal());
     dispatch(toggleDeleteModal(true));
-    dispatch(populatePassedData(task));
-    closeModal();
+    dispatch(editTask({ task: passedData, status: passedData.status }));
+    dispatch(populatePassedData(passedData));
+    dispatch(toggleViewTask(false));
   }
 
   function openEditTask() {
-    dispatch(populatePassedData(task));
+    dispatch(toggleTaskMiniModal());
     dispatch(toggleTaskEditor(true));
-    closeModal();
+    dispatch(editTask({ task: passedData, status: passedData.status }));
+    dispatch(populatePassedData(passedData));
+    dispatch(toggleViewTask(false));
   }
 
   function openMiniModal() {

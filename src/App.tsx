@@ -7,10 +7,15 @@ import { resetModalsSlice, toggleDeleteModal } from "./context/modals";
 import { deleteBoard, deleteTask } from "./context/boards";
 import BoardsEditor from "./features/BoardsEditor/BoardsEditor";
 import Sidebar from "./features/Sidebar/Sidebar";
+import ViewTask from "./features/ViewTask/ViewTask";
 
 function App() {
-  const { taskEditorIsOpen, boardsEditorIsOpen, sideBarIsOpen } =
-    useAppSelector((state) => state.modals);
+  const {
+    taskEditorIsOpen,
+    boardsEditorIsOpen,
+    sideBarIsOpen,
+    viewTaskIsOpen,
+  } = useAppSelector((state) => state.modals);
   const { deleteTypeIsOpen, passedData } = useAppSelector(
     (state) => state.modals
   );
@@ -55,6 +60,7 @@ function App() {
             type={typeCheck()}
           />
         )}
+        {viewTaskIsOpen && <ViewTask />}
         {taskEditorIsOpen && <TaskEditor />}
         {boardsEditorIsOpen && <BoardsEditor />}
         {}

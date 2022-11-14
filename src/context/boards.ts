@@ -7,15 +7,6 @@ interface BoardsState {
   boards: IBoard[];
 }
 
-function createBoard() {
-  return {
-    id: nanoid(),
-    name: "Platform Launch",
-    columns: [],
-    isCurrent: false,
-  };
-}
-
 const initialState: BoardsState = {
   boards: [
     { id: nanoid(), name: "Platform Launch", columns: [], isCurrent: true },
@@ -144,12 +135,6 @@ export const boardsSlice = createSlice({
       });
     },
 
-    toggleViewTask: (state, action) => {
-      const { task, status, bool } = action.payload;
-      const currentTask = findCurrentTask(state, status, task);
-      currentTask.viewTask = bool;
-    },
-
     changeTaskStatus: (state, action) => {
       const { newStatus, prev, task } = action.payload;
       const currentBoard = findCurrentBoard(state);
@@ -178,7 +163,6 @@ export const boardsSlice = createSlice({
       const currentSubTask = findCurrentTask(state, status, task).subtasks.find(
         (subtask) => subtask.id === id
       )!;
-
       currentSubTask.isCompleted = bool;
     },
   },
@@ -190,7 +174,6 @@ export const {
   addTaskToColumn,
   changeTaskStatus,
   toggleTaskStatusList,
-  toggleViewTask,
   updateSubTaskIsComplete,
   deleteTask,
   deleteBoard,
