@@ -57,6 +57,7 @@ function App() {
         )}
         {taskEditorIsOpen && <TaskEditor />}
         {boardsEditorIsOpen && <BoardsEditor />}
+        {}
       </div>
     </div>
   );

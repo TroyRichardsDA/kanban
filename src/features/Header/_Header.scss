@@ -107,3 +107,10 @@
     }
   }
 }
+
+/*    DESKTOP    */
+@include breakpoint(desktop) {
+  .header_left div > h2 {
+    @include HeadingXL;
+  }
+}

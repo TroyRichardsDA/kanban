@@ -37,3 +37,10 @@
     color: $grey;
   }
 }
+
+/*    DESKTOP     */
+@include breakpoint(desktop) {
+  .sidebar {
+    width: 300px;
+  }
+}
