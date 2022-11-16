@@ -46,6 +46,7 @@
 .board_columns-container {
   display: flex;
   overflow-x: scroll;
+  gap: 24px;
 
   &::-webkit-scrollbar {
     height: 0px;
@@ -92,5 +93,9 @@
     background: #635fc7;
     border: none;
     border-radius: 0px 100px 100px 0px;
+  }
+
+  .board_new-column > p {
+    @include HeadingXL;
   }
 }

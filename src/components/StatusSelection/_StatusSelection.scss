@@ -20,6 +20,9 @@
 }
 
 .status-sel_options {
+  position: absolute;
+  bottom: 0;
+
   width: 100%;
   padding: 8px 16px;
   color: $grey !important;

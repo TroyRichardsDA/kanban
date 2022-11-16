@@ -115,3 +115,11 @@
     width: 100%;
   }
 }
+
+/*      DESKTOP     */
+
+@include breakpoint(desktop) {
+  .boards-nav_board-name {
+    min-width: 276px;
+  }
+}

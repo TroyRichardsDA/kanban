@@ -157,14 +157,6 @@ export const boardsSlice = createSlice({
       const currentTask = findCurrentTask(state, status, task);
       currentTask.statusListIsOpen = !currentTask.statusListIsOpen;
     },
-
-    updateSubTaskIsComplete: (state, action) => {
-      const { task, status, id, bool } = action.payload;
-      const currentSubTask = findCurrentTask(state, status, task).subtasks.find(
-        (subtask) => subtask.id === id
-      )!;
-      currentSubTask.isCompleted = bool;
-    },
   },
 });
 
@@ -174,7 +166,6 @@ export const {
   addTaskToColumn,
   changeTaskStatus,
   toggleTaskStatusList,
-  updateSubTaskIsComplete,
   deleteTask,
   deleteBoard,
   editTask,

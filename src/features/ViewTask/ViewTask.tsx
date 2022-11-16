@@ -6,7 +6,6 @@ import {
   changeTaskStatus,
   editTask,
   toggleTaskStatusList,
-  updateSubTaskIsComplete,
 } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import {
