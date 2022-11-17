@@ -1,6 +1,7 @@
 @use "../../styles/abstracts/variables" as *;
 @use "../../styles/abstracts/global" as *;
 @use "../../styles/shared/typography" as *;
+@use "../../styles/utils/breakpoints" as *;
 
 .view-task_header {
   display: flex;
@@ -36,6 +37,7 @@
 }
 
 .view-task_subtask {
+  transition: 0.2s;
   background-color: $lightBG;
   border-radius: 4px;
   padding: 14px 12px;
@@ -43,8 +45,8 @@
   gap: 16px;
 
   .view-task_checkbox {
-    cursor: pointer;
     accent-color: $primary;
+    border: 1px solid rgba(130, 143, 163, 0.248914);
   }
 
   label {
@@ -54,4 +56,23 @@
 
 .view-task_status {
   @include label;
+}
+
+/*      DESKTOP      */
+@include breakpoint(desktop) {
+  .view-task_ellipsis:hover {
+    cursor: pointer;
+  }
+
+  .view-task_subtask:hover {
+    cursor: pointer;
+
+    &:not(.view-task_completed) {
+      background-color: rgba(99, 95, 199, 0.25); /* Primary at 0.25 opacity */
+    }
+
+    & * {
+      cursor: pointer;
+    }
+  }
 }

@@ -97,5 +97,22 @@
 
   .board_new-column > p {
     @include HeadingXL;
+    transition: 0.2s;
+  }
+}
+
+/*      DESKTOP      */
+@include breakpoint(desktop) {
+  .board_empty--content > button:hover {
+    background-color: $primaryHover;
+  }
+
+  .board_show-sidebar:hover {
+    cursor: pointer;
+    background-color: $primaryHover;
+  }
+
+  .board_new-column:hover > p {
+    color: $primary;
   }
 }

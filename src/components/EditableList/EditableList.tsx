@@ -1,4 +1,4 @@
-import Cross from "../../assets/icon-cross.svg";
+import { ReactComponent as Cross } from "../../assets/icon-cross.svg";
 
 interface Props {
   id: string;
@@ -20,7 +20,7 @@ const EditableList = (props: Props) => {
         type="text"
         placeholder={placeholder ? placeholder : ""}
       />
-      <img onClick={() => remove(id)} src={Cross} alt="An X" />
+      <Cross onClick={() => remove(id)} />
     </div>
   );
 };

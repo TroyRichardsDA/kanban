@@ -54,9 +54,7 @@ const BoardsEditor = () => {
       columns: validColumns,
     };
 
-    const filledCorretly =
-      Object.values(board).every((value) => value != null && value) &&
-      board.columns.length > 0;
+    const filledCorretly = board.name !== ("" || null);
 
     if (filledCorretly) {
       dispatch(toggleBoardsEditor(false));

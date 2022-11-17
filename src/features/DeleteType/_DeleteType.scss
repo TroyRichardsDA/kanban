@@ -1,5 +1,6 @@
 @use "../../styles/abstracts/variables" as *;
 @use "../../styles/shared/typography" as *;
+@use "../../styles/utils/breakpoints" as *;
 
 .delete-type_title {
   @include HeadingL;
@@ -33,5 +34,26 @@
   .delete-type_cancel {
     color: $primary;
     background: rgba(99, 95, 199, 0.1);
+  }
+}
+
+/*        DESKTOP        */
+@include breakpoint(desktop) {
+  .delete-type_btns-container {
+    flex-direction: row;
+
+    button {
+      width: 100%;
+    }
+
+    .delete-type_delete:hover {
+      cursor: pointer;
+      background-color: $redHover;
+    }
+
+    .delete-type_cancel:hover {
+      cursor: pointer;
+      background-color: rgba(99, 95, 199, 0.25);
+    }
   }
 }

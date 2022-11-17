@@ -67,7 +67,10 @@ function Header() {
           >
             <Plus /> <span>+ Add New Task</span>
           </button>
-          <Ellipsis onClick={() => dispatch(toggleBoardMiniModal())} />
+          <Ellipsis
+            className="header_ellipsis"
+            onClick={() => dispatch(toggleBoardMiniModal())}
+          />
           {boardMiniModalIsOpen && (
             <MiniModal
               type="Board"

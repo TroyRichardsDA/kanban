@@ -1,6 +1,7 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/global" as *;
 @use "../shared/typography" as *;
+@use "../utils/breakpoints" as *;
 
 .editor_header {
   @include HeadingL;
@@ -39,4 +40,17 @@
   padding: 10px 18px;
 
   border: none;
+}
+
+/*      DESKTOP      */
+@include breakpoint(desktop) {
+  .editor_add-new:hover {
+    cursor: pointer;
+    background-color: rgba(99, 95, 199, 0.25);
+  }
+
+  .editor_submit-btn:hover {
+    cursor: pointer;
+    background-color: $primaryHover;
+  }
 }

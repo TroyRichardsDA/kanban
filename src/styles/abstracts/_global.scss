@@ -1,5 +1,6 @@
 @use "./variables.scss" as *;
 @use "../shared/typography" as *;
+@use "../utils/breakpoints" as *;
 
 html {
   height: 100vh;
@@ -22,6 +23,7 @@ html {
   input,
   textarea {
     @include BodyL(500);
+    transition: 0.2s;
     font-family: $baseFont;
 
     outline: none;
@@ -36,6 +38,12 @@ html {
 
     &::placeholder {
       opacity: 0.25;
+    }
+
+    @include breakpoint(desktop) {
+      &:hover {
+        border-color: $primary;
+      }
     }
   }
 }

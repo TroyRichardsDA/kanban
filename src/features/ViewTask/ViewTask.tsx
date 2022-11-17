@@ -55,17 +55,17 @@ function ViewTask() {
     }
 
     return (
-      <div className="view-task_subtask" key={id}>
+      <label className="view-task_subtask">
         <input
           onChange={(e) => updateCompleted(e)}
           type="checkbox"
           checked={isCompleted}
           className="view-task_checkbox"
         />
-        <label className={`${isCompleted && "view-task_completed"}`}>
+        <span className={`${isCompleted && "view-task_completed"}`}>
           {subtask.title}
-        </label>
-      </div>
+        </span>
+      </label>
     );
   });
 
@@ -109,7 +109,7 @@ function ViewTask() {
     <Modal toggle={closeModal}>
       <div className="view-task_header">
         <h2 className="view-task_title">{title}</h2>
-        <Ellipsis onClick={openMiniModal} />
+        <Ellipsis className="view-task_ellipsis" onClick={openMiniModal} />
         {taskMiniModalIsOpen && (
           <MiniModal
             editType={openEditTask}

@@ -81,7 +81,10 @@
   min-width: 240px;
   align-items: center;
   gap: 12px;
+  border-radius: 0px 100px 100px 0px;
+  margin-left: -24px;
   padding: 16px 0;
+  padding-left: 24px;
 
   color: $grey;
   stroke: $grey;
@@ -93,10 +96,6 @@
 }
 
 .boards-nav_current {
-  margin-left: -24px;
-  padding-left: 24px;
-
-  border-radius: 0px 100px 100px 0px;
   color: white;
   background-color: $primary;
 
@@ -116,10 +115,20 @@
   }
 }
 
-/*      DESKTOP     */
-
+/*      DESKTOP      */
 @include breakpoint(desktop) {
-  .boards-nav_board-name {
-    min-width: 276px;
+  .boards-nav_board-name:not(.boards-nav_current):hover {
+    cursor: pointer;
+    color: $primary;
+    background-color: fade-out($primaryHover, $amount: 0.8);
+
+    svg > path {
+      fill: $primary;
+    }
+  }
+
+  .boards-nav_theme-switcher > label:hover {
+    cursor: pointer;
+    background-color: $primaryHover;
   }
 }

@@ -63,7 +63,6 @@ function App() {
         {viewTaskIsOpen && <ViewTask />}
         {taskEditorIsOpen && <TaskEditor />}
         {boardsEditorIsOpen && <BoardsEditor />}
-        {}
       </div>
     </div>
   );

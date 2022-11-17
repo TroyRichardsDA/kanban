@@ -1,5 +1,6 @@
 @use "../../styles/abstracts/variables" as *;
 @use "../../styles/shared/typography" as *;
+@use "../../styles/utils/breakpoints" as *;
 
 .task_container {
   background-color: white;
@@ -15,9 +16,21 @@
 
 .task_title {
   @include HeadingM;
+  transition: 0.2s;
 }
 
 .task_subtasks {
   @include BodyM;
   color: $grey;
+}
+
+/*        DESKTOP        */
+@include breakpoint(desktop) {
+  .task_container:hover {
+    cursor: pointer;
+
+    & .task_title {
+      color: $primary;
+    }
+  }
 }

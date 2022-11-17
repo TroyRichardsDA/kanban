@@ -113,4 +113,13 @@
   .header_left div > h2 {
     @include HeadingXL;
   }
+
+  .header_right > button:hover {
+    cursor: pointer;
+    background-color: $primaryHover;
+  }
+
+  .header_ellipsis:hover {
+    cursor: pointer;
+  }
 }
