@@ -21,10 +21,15 @@
   background-color: white;
   transition: 0.2s;
   margin: 0 auto;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 24px;
 
   color: black;
+}
+
+/*      TABLET     */
+@include breakpoint(tablet) {
 }
 
 /*    DESKTOP    */

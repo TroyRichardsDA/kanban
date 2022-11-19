@@ -56,6 +56,12 @@ export const modalsSlice = createSlice({
 
       currentSubtask.isCompleted = bool;
     },
+    updateCurrentStatus: (state, action) => {
+      state.passedData.status = action.payload;
+    },
+    toggleTaskStatusList: (state) => {
+      state.passedData.statusListIsOpen = !state.passedData.statusListIsOpen;
+    },
   },
 });
 
@@ -72,6 +78,8 @@ export const {
   toggleAllBoardsModal,
   resetPassedData,
   updateSubTask,
+  toggleTaskStatusList,
+  updateCurrentStatus,
 } = modalsSlice.actions;
 
 export default modalsSlice.reducer;

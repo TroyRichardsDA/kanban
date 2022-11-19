@@ -24,21 +24,19 @@ const StatusSelection = (props: Props) => {
   ));
 
   return (
-    <>
-      <div className="status-sel_container">
-        <input
-          className={`status-sel_current ${
-            statusListIsOpen && "status_sel-open"
-          }`}
-          value={status}
-          type="text"
-          readOnly
-          onClick={() => toggleStatus()}
-        />
-        <ChevronDown />
-      </div>
+    <div className="status-sel_container">
+      <input
+        className={`status-sel_current ${
+          statusListIsOpen && "status_sel-open"
+        }`}
+        value={status}
+        type="text"
+        readOnly
+        onClick={() => toggleStatus()}
+      />
+      <ChevronDown />
       {statusListIsOpen && <div className="status-sel_options">{options}</div>}
-    </>
+    </div>
   );
 };
 

@@ -1,4 +1,5 @@
 @use "../../styles/abstracts/variables" as *;
+@use "../../styles/shared/typography" as *;
 
 .status-sel_container {
   position: relative;
@@ -21,14 +22,15 @@
 
 .status-sel_options {
   position: absolute;
-  bottom: 0;
-
+  top: 50px;
+  background-color: white;
   width: 100%;
   padding: 8px 16px;
   color: $grey !important;
 }
 
 .status-sel_option {
+  @include BodyL(500);
   width: 100%;
 
   &:hover {

@@ -2,11 +2,7 @@ import { ReactComponent as Ellipsis } from "../../assets/icon-vertical-ellipsis.
 import MiniModal from "../../components/MiniModal/MiniModal";
 import Modal from "../../components/Modals/Modal";
 import StatusSelection from "../../components/StatusSelection/StatusSelection";
-import {
-  changeTaskStatus,
-  editTask,
-  toggleTaskStatusList,
-} from "../../context/boards";
+import { changeTaskStatus, editTask } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import {
   populatePassedData,
@@ -15,7 +11,9 @@ import {
   toggleTaskEditor,
   toggleTaskMiniModal,
   toggleViewTask,
+  toggleTaskStatusList,
   updateSubTask,
+  updateCurrentStatus,
 } from "../../context/modals";
 import { ISubTask } from "../../models/ISubtask";
 
@@ -77,12 +75,19 @@ function ViewTask() {
 
   function changeStatus(newStatus: string) {
     if (newStatus !== status) {
-      dispatch(changeTaskStatus({ newStatus, prev: status, passedData }));
+      dispatch(
+        changeTaskStatus({
+          newStatus,
+          prev: passedData.status,
+          task: passedData,
+        })
+      );
+      dispatch(updateCurrentStatus(newStatus));
     }
   }
 
   function toggleStatusList() {
-    dispatch(toggleTaskStatusList({ passedData, status }));
+    dispatch(toggleTaskStatusList());
   }
 
   function openDeleteModal() {
