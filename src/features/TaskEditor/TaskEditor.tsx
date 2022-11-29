@@ -2,14 +2,15 @@ import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import {
   removeSubtask,
   toggleStatusesList,
-  updateDescription,
   updateStatus,
   updateSubtasks,
-  updateTitle,
   addSubtask,
   createID,
   populateTaskEditor,
   resetTaskEditor,
+  updateText,
+  updateVisited,
+  updateSubtaskVisited,
 } from "./taskEditorSlice";
 import { useEffect } from "react";
 import { ITask } from "../../models/ITask";
@@ -20,6 +21,7 @@ import Modal from "../../components/Modals/Modal";
 import { nanoid } from "@reduxjs/toolkit";
 import EditableList from "../../components/EditableList/EditableList";
 import StatusSelection from "../../components/StatusSelection/StatusSelection";
+import FormInput from "../../components/FormInput/FormInput";
 
 const TaskEditor = () => {
   const { boards } = useAppSelector((state) => state.boards);
@@ -55,6 +57,7 @@ const TaskEditor = () => {
   function closeModal() {
     dispatch(toggleTaskEditor(false));
     dispatch(resetTaskEditor());
+    dispatch(resetModalsSlice());
   }
 
   function sendNewTask(e: any) {
@@ -69,7 +72,6 @@ const TaskEditor = () => {
       description,
       status,
       statusListIsOpen: false,
-      viewTask: false,
       subtasks: validSubtasks,
     };
 
@@ -80,7 +82,6 @@ const TaskEditor = () => {
     if (filledCorretly) {
       dispatch(toggleTaskEditor(false));
       dispatch(resetTaskEditor());
-
       if (!passedData) {
         dispatch(addTaskToColumn({ column: status, task: newTask }));
       } else {
@@ -92,14 +93,18 @@ const TaskEditor = () => {
   }
 
   const subtasksList = subtasks.map((subtask: ISubTask) => {
-    const { title, placeholder, id } = subtask;
+    const { title, placeholder, id, visited } = subtask;
 
     function updateTask(updated: string) {
       dispatch(updateSubtasks({ id, title: updated }));
     }
 
     function removeTask(subtaskId: string) {
-      dispatch(removeSubtask(subtaskId));
+      if (subtasks.length > 1) dispatch(removeSubtask(subtaskId));
+    }
+
+    function updateVisited(id: string) {
+      dispatch(updateSubtaskVisited({ id, bool: true }));
     }
 
     return (
@@ -110,32 +115,44 @@ const TaskEditor = () => {
         remove={removeTask}
         text={title}
         placeholder={placeholder}
+        visited={visited}
+        onBlur={updateVisited}
       />
     );
   });
+
+  const reg = /^[a-zA-Z0-9]{2,}$/;
+
+  function handleText(e: any) {
+    dispatch(updateText({ name: e.target.name, text: e.target.value }));
+  }
+
+  function handleBlur(e: any) {
+    dispatch(updateVisited({ name: e.target.name, visited: true }));
+  }
 
   return (
     <Modal toggle={closeModal}>
       <h3 className="editor_header">{passedData ? "Edit" : "Add New"} Task</h3>
       <form className="editor_form" onSubmit={(e) => sendNewTask(e)}>
-        <label className="editor_label">
-          Title
-          <input
-            onChange={(e) => dispatch(updateTitle(e.target.value))}
-            value={title}
-            placeholder="e.g. Take coffee break."
-            type="text"
-          />
-        </label>
-        <label className="editor_label">
-          Description
-          <textarea
-            onChange={(e) => dispatch(updateDescription(e.target.value))}
-            value={description}
-            rows={5}
-            placeholder="e.g. It's always good to take a break."
-          />
-        </label>
+        <FormInput
+          header="Title"
+          name="title"
+          onChange={handleText}
+          value={title.text}
+          placeholder="e.g. Take coffee break."
+          type="text"
+          visited={title.visited}
+          onBlur={handleBlur}
+        />
+        <FormInput
+          header="Description"
+          name="description"
+          onChange={handleText}
+          value={description.text}
+          rows={5}
+          placeholder="e.g It's always good to take a coffee break"
+        />
         <label className="editor_label"> Subtasks {subtasksList}</label>
         <button className="editor_add-new" onClick={(e) => addNewSubtask(e)}>
           + Add New Subtask

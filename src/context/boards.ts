@@ -9,7 +9,13 @@ interface BoardsState {
 
 const initialState: BoardsState = {
   boards: [
-    { id: nanoid(), name: "Platform Launch", columns: [], isCurrent: true },
+    {
+      id: nanoid(),
+      visited: false,
+      name: "Platform Launch",
+      columns: [],
+      isCurrent: true,
+    },
   ],
 };
 
@@ -32,6 +38,7 @@ export const boardsSlice = createSlice({
       const newBoard: IBoard = {
         id: "12mlksdf",
         name: action.payload,
+        visited: false,
         columns: [],
         isCurrent: false,
       };
@@ -80,13 +87,33 @@ export const boardsSlice = createSlice({
           const cols = board.columns;
 
           if (cols.length === 0) {
-            cols.push({ id: nanoid(), name: "Todo", tasks: [] });
+            cols.push({
+              id: nanoid(),
+              visited: false,
+              name: "Todo",
+              tasks: [],
+            });
           } else if (cols.length === 1) {
-            cols.push({ id: nanoid(), name: "Doing", tasks: [] });
+            cols.push({
+              id: nanoid(),
+              visited: false,
+              name: "Doing",
+              tasks: [],
+            });
           } else if (cols.length === 2) {
-            cols.push({ id: nanoid(), name: "Done", tasks: [] });
+            cols.push({
+              id: nanoid(),
+              visited: false,
+              name: "Done",
+              tasks: [],
+            });
           } else {
-            cols.push({ id: nanoid(), name: "New Column", tasks: [] });
+            cols.push({
+              id: nanoid(),
+              visited: false,
+              name: "New Column",
+              tasks: [],
+            });
           }
           return board;
         } else {

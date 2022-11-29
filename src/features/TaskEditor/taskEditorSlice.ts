@@ -11,17 +11,23 @@ function createNewSubtask() {
     id: nanoid(),
     title: "",
     isCompleted: false,
+    visited: false,
     placeholder: placeholders[getRandomPlaceholder()],
   };
 }
 
 const initialState: ITask = {
   id: "",
-  title: "",
-  description: "",
+  title: {
+    text: "",
+    visited: false,
+  },
+  description: {
+    text: "",
+    visited: false,
+  },
   status: "",
   statusListIsOpen: false,
-  viewTask: false,
   subtasks: [createNewSubtask(), createNewSubtask()],
 };
 
@@ -33,22 +39,25 @@ export const taskEditorSlice = createSlice({
       state.id = action.payload;
     },
 
-    updateTitle: (state, action) => {
-      state.title = action.payload;
+    updateText: (state, action) => {
+      const { name, text } = action.payload;
+      return { ...state, [name]: { text } };
     },
 
-    updateDescription: (state, action) => {
-      state.description = action.payload;
+    updateVisited: (state, action) => {
+      const { name, visited } = action.payload;
+      if (name === "title") {
+        state.title.visited = visited;
+      } else {
+        state.description.visited = visited;
+      }
     },
 
     updateSubtasks: (state, action) => {
       const { id, title } = action.payload;
       state.subtasks.map((subtask) => {
-        if (subtask.id === id) {
-          return (subtask.title = title);
-        } else {
-          return null;
-        }
+        if (subtask.id === id) return (subtask.title = title);
+        else return subtask;
       });
     },
 
@@ -63,6 +72,14 @@ export const taskEditorSlice = createSlice({
       const index = state.subtasks.indexOf(subtask!);
 
       state.subtasks.splice(index, 1);
+    },
+
+    updateSubtaskVisited: (state, action) => {
+      const { id, bool } = action.payload;
+      state.subtasks.map((subtask) => {
+        if (subtask.id === id) return (subtask.visited = bool);
+        else return subtask;
+      });
     },
 
     updateStatus: (state, action) => {
@@ -82,8 +99,6 @@ export const taskEditorSlice = createSlice({
 });
 
 export const {
-  updateTitle,
-  updateDescription,
   updateStatus,
   updateSubtasks,
   toggleStatusesList,
@@ -92,6 +107,9 @@ export const {
   resetTaskEditor,
   createID,
   populateTaskEditor,
+  updateText,
+  updateVisited,
+  updateSubtaskVisited,
 } = taskEditorSlice.actions;
 
 export default taskEditorSlice.reducer;

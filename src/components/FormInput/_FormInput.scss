@@ -1,0 +1,14 @@
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/shared/typography" as *;
+@use "../../styles/utils/breakpoints" as *;
+@use "../../styles/abstracts/global" as *;
+
+.form-input_label {
+  @include label;
+
+  span {
+    color: $red;
+    bottom: 10px;
+    right: 8px;
+  }
+}

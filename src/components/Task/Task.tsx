@@ -9,7 +9,7 @@ type Props = {
 
 function Task(props: Props) {
   const { task } = props;
-  const { title, subtasks, viewTask } = task;
+  const { title, subtasks } = task;
   const dispatch = useAppDispatch();
 
   const subtasksComplete = subtasks.filter(
@@ -21,17 +21,12 @@ function Task(props: Props) {
     dispatch(populatePassedData(task));
   }
 
-  function preventChild(e: any) {
-    e.stopPropagation();
-  }
-
   return (
     <div onClick={() => openTask()} className="task_container">
-      <h3 className="task_title">{title}</h3>
+      <h3 className="task_title">{title.text}</h3>
       <p className="task_subtasks">
         {subtasksComplete} of {subtasks.length} subtasks
       </p>
-      <div onClick={(e) => preventChild(e)}>{viewTask && <ViewTask />}</div>
     </div>
   );
 }

@@ -10,6 +10,12 @@
   input {
     flex: 2;
   }
+
+  span {
+    position: absolute;
+    right: 10%;
+    color: $red;
+  }
 }
 
 /*        DESKTOP      */

@@ -15,6 +15,15 @@
 
 .editor_label {
   @include label;
+  position: relative;
+}
+
+.editor_error {
+  @include BodyL(500);
+  position: absolute;
+  color: red;
+  bottom: 9px;
+  right: 10px;
 }
 
 .editor_add-new {

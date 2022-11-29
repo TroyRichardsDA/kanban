@@ -1,6 +1,7 @@
 import { nanoid } from "nanoid";
 import { useEffect } from "react";
 import EditableList from "../../components/EditableList/EditableList";
+import FormInput from "../../components/FormInput/FormInput";
 import Modal from "../../components/Modals/Modal";
 import { addNewBoard, editBoard } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
@@ -17,10 +18,14 @@ import {
   resetBoardsEditor,
   updateBoardName,
   updateColumns,
+  updateColumnVisited,
+  updateVisited,
 } from "./boardsEditorSlice";
 
 const BoardsEditor = () => {
-  const { name, columns } = useAppSelector((state) => state.boardsEditor);
+  const { name, columns, visited } = useAppSelector(
+    (state) => state.boardsEditor
+  );
   const { passedData } = useAppSelector((state) => state.modals);
 
   const dispatch = useAppDispatch();
@@ -42,6 +47,14 @@ const BoardsEditor = () => {
     dispatch(resetPassedData());
   }
 
+  function updateName(e: any) {
+    dispatch(updateBoardName(e.target.value));
+  }
+
+  function handleBlur(e: any) {
+    dispatch(updateVisited(true));
+  }
+
   function sendBoard(e: any) {
     e.preventDefault();
     const notNewBoard = passedData ? passedData.id : nanoid();
@@ -51,6 +64,7 @@ const BoardsEditor = () => {
       id: notNewBoard,
       name,
       isCurrent: true,
+      visited: false,
       columns: validColumns,
     };
 
@@ -71,7 +85,7 @@ const BoardsEditor = () => {
   }
 
   const boardColumns = columns.map((column) => {
-    const { name, id } = column;
+    const { name, id, visited } = column;
 
     function updateName(updated: string) {
       dispatch(updateColumns({ id, name: updated }));
@@ -81,6 +95,10 @@ const BoardsEditor = () => {
       dispatch(removeColumn(id));
     }
 
+    function updateColVisited() {
+      dispatch(updateColumnVisited({ id, bool: true }));
+    }
+
     return (
       <EditableList
         key={column.id}
@@ -88,6 +106,8 @@ const BoardsEditor = () => {
         text={name}
         updateText={updateName}
         remove={deleteColumn}
+        onBlur={updateColVisited}
+        visited={visited}
       />
     );
   });
@@ -96,14 +116,14 @@ const BoardsEditor = () => {
     <Modal toggle={closeModal}>
       <h3 className="editor_header">{passedData ? "Edit" : "Add New"} Board</h3>
       <form className="editor_form" onSubmit={(e) => sendBoard(e)}>
-        <label className="editor_label">
-          Board Name
-          <input
-            value={name}
-            onChange={(e) => dispatch(updateBoardName(e.target.value))}
-            type="text"
-          />
-        </label>
+        <FormInput
+          header="Board Name"
+          value={name}
+          onChange={updateName}
+          type="text"
+          onBlur={handleBlur}
+          visited={visited}
+        />
         <label className="editor_label">
           Board Columns
           {boardColumns}

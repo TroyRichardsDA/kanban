@@ -6,6 +6,7 @@ function createNewColumn() {
   return {
     id: nanoid(),
     name: "",
+    visited: false,
     tasks: [],
   };
 }
@@ -13,6 +14,7 @@ function createNewColumn() {
 const initialState: IBoard = {
   id: "",
   name: "",
+  visited: false,
   columns: [createNewColumn(), createNewColumn()],
   isCurrent: false,
 };
@@ -27,6 +29,10 @@ export const boardsEditorSlice = createSlice({
 
     updateBoardName: (state, action) => {
       state.name = action.payload;
+    },
+
+    updateVisited: (state, action) => {
+      state.visited = action.payload;
     },
 
     updateColumns: (state, action) => {
@@ -54,6 +60,16 @@ export const boardsEditorSlice = createSlice({
       state.columns.splice(index, 1);
     },
 
+    updateColumnVisited: (state, action) => {
+      const { id, bool } = action.payload;
+
+      state.columns.map((col) => {
+        if (col.id === id) {
+          col.visited = bool;
+        }
+      });
+    },
+
     resetBoardsEditor: () => initialState,
   },
 });
@@ -65,6 +81,8 @@ export const {
   removeColumn,
   updateBoardName,
   resetBoardsEditor,
+  updateVisited,
+  updateColumnVisited,
 } = boardsEditorSlice.actions;
 
 export default boardsEditorSlice.reducer;

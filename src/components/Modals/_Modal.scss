@@ -28,10 +28,6 @@
   color: black;
 }
 
-/*      TABLET     */
-@include breakpoint(tablet) {
-}
-
 /*    DESKTOP    */
 @include breakpoint(desktop) {
   .modal_container {
