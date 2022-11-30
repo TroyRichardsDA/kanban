@@ -22,12 +22,11 @@ function Header() {
     useAppSelector((state) => state.modals);
   const { isDarkMode } = useAppSelector((state) => state.theme);
   const currentBoard = boards.find((board) => board.isCurrent)!;
-  const isMobileScreen = window.innerWidth < 768;
   const noColumns = currentBoard.columns.length === 0;
   const dispatch = useAppDispatch();
 
   function toggleAllBoards() {
-    if (isMobileScreen) {
+    if (window.innerWidth < 768) {
       dispatch(toggleAllBoardsModal());
     }
   }

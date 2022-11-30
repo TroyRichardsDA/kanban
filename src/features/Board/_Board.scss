@@ -77,6 +77,7 @@
 
 .board_show-sidebar {
   display: none;
+  transition: 0.2s;
 }
 
 /*    TABLET     */
@@ -98,6 +99,10 @@
   .board_new-column > p {
     @include HeadingXL;
     transition: 0.2s;
+  }
+
+  .board_mobile-boards-nav {
+    display: none;
   }
 }
 

@@ -6,17 +6,21 @@ import { ITask } from "../models/ITask";
 interface BoardsState {
   boards: IBoard[];
 }
+const boards =
+  localStorage.getItem("boards") != null
+    ? JSON.parse(localStorage.getItem("boards")!)
+    : [
+        {
+          id: nanoid(),
+          visited: false,
+          name: "Platform Launch",
+          columns: [],
+          isCurrent: true,
+        },
+      ];
 
 const initialState: BoardsState = {
-  boards: [
-    {
-      id: nanoid(),
-      visited: false,
-      name: "Platform Launch",
-      columns: [],
-      isCurrent: true,
-    },
-  ],
+  boards: boards,
 };
 
 function findCurrentBoard(state: BoardsState) {
@@ -30,32 +34,34 @@ function findCurrentTask(state: BoardsState, name: string, task: ITask) {
   return currentTask;
 }
 
+function createNewColumn(name: string) {
+  return {
+    id: nanoid(),
+    name,
+    visited: false,
+    tasks: [],
+  };
+}
+
 export const boardsSlice = createSlice({
   name: "boards",
   initialState,
   reducers: {
-    addNewBorad: (state, action) => {
-      const newBoard: IBoard = {
-        id: "12mlksdf",
-        name: action.payload,
-        visited: false,
-        columns: [],
-        isCurrent: false,
-      };
-      state.boards.push(newBoard);
-    },
-
     addNewBoard: (state, action) => {
       state.boards.map((board) => {
         return (board.isCurrent = false);
       });
       state.boards.push(action.payload);
+
+      localStorage.setItem("boards", JSON.stringify(state.boards));
     },
 
     editBoard: (state, action) => {
       const currentBoard = findCurrentBoard(state);
       const index = state.boards.indexOf(currentBoard);
       state.boards.splice(index, 1, action.payload);
+
+      localStorage.setItem("boards", JSON.stringify(state.boards));
     },
 
     changeBoard: (state, action) => {
@@ -66,6 +72,8 @@ export const boardsSlice = createSlice({
           return (board.isCurrent = true);
         }
       });
+
+      localStorage.setItem("boards", JSON.stringify(state.boards));
     },
 
     deleteBoard: (state) => {
@@ -74,6 +82,7 @@ export const boardsSlice = createSlice({
         const index = state.boards.indexOf(currentBoard);
         state.boards.splice(index, 1);
         state.boards[0].isCurrent = true;
+        localStorage.setItem("boards", JSON.stringify(state.boards));
       } else {
         alert(
           "You must have atleast one board active at all times. Please make another board before trying to delete this one."
@@ -87,39 +96,19 @@ export const boardsSlice = createSlice({
           const cols = board.columns;
 
           if (cols.length === 0) {
-            cols.push({
-              id: nanoid(),
-              visited: false,
-              name: "Todo",
-              tasks: [],
-            });
+            cols.push(createNewColumn("Todo"));
           } else if (cols.length === 1) {
-            cols.push({
-              id: nanoid(),
-              visited: false,
-              name: "Doing",
-              tasks: [],
-            });
+            cols.push(createNewColumn("Doing"));
           } else if (cols.length === 2) {
-            cols.push({
-              id: nanoid(),
-              visited: false,
-              name: "Done",
-              tasks: [],
-            });
-          } else {
-            cols.push({
-              id: nanoid(),
-              visited: false,
-              name: "New Column",
-              tasks: [],
-            });
+            cols.push(createNewColumn("Done"));
           }
           return board;
         } else {
           return board;
         }
       });
+
+      localStorage.setItem("boards", JSON.stringify(state.boards));
     },
 
     addTaskToColumn: (state, action) => {
@@ -134,6 +123,8 @@ export const boardsSlice = createSlice({
           return col;
         }
       });
+
+      localStorage.setItem("boards", JSON.stringify(state.boards));
     },
 
     deleteTask: (state, action) => {
@@ -147,6 +138,8 @@ export const boardsSlice = createSlice({
           col.tasks.splice(index, 1);
         }
       });
+
+      localStorage.setItem("boards", JSON.stringify(state.boards));
     },
 
     editTask: (state, action) => {
@@ -160,6 +153,8 @@ export const boardsSlice = createSlice({
           col.tasks.splice(index, 1, task);
         }
       });
+
+      localStorage.setItem("boards", JSON.stringify(state.boards));
     },
 
     changeTaskStatus: (state, action) => {
@@ -177,6 +172,8 @@ export const boardsSlice = createSlice({
           col.tasks.push(currentTask);
         }
       });
+
+      localStorage.setItem("boards", JSON.stringify(state.boards));
     },
 
     toggleTaskStatusList: (state, action) => {
@@ -189,7 +186,6 @@ export const boardsSlice = createSlice({
 
 export const {
   addColumnToBoard,
-  addNewBorad,
   addTaskToColumn,
   changeTaskStatus,
   toggleTaskStatusList,

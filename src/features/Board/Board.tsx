@@ -35,24 +35,25 @@ const Board = () => {
         </div>
       )}
 
-      <div className="board_columns-container">
-        {boardColumnsLength > 0 && (
-          <>
-            {currentBoard.columns.map(({ id, name, tasks }) => (
-              <Column key={id} name={name} tasks={tasks} />
-            ))}
-            <div className="board_new-column" onClick={() => addtoColumns()}>
-              <p>+ New Column</p>
-            </div>
-          </>
-        )}
-      </div>
+      {boardColumnsLength > 0 && (
+        <div className="board_columns-container">
+          {currentBoard.columns.map(({ id, name, tasks }) => (
+            <Column key={id} name={name} tasks={tasks} />
+          ))}
+          <div className="board_new-column" onClick={() => addtoColumns()}>
+            <p>+ New Column</p>
+          </div>
+        </div>
+      )}
       {!sideBarIsOpen && (
         <button onClick={(e) => openSidebar(e)} className="board_show-sidebar">
           <Show />
         </button>
       )}
-      {allBoardsModalIsOpen && <MobileBoardsNav />}
+
+      <div className="board_mobile-boards-nav">
+        {allBoardsModalIsOpen && <MobileBoardsNav />}
+      </div>
     </main>
   );
 };
