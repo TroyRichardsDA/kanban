@@ -1,9 +1,12 @@
 import { ReactComponent as Show } from "../../assets/icon-show-sidebar.svg";
-import { addColumnToBoard } from "../../context/boards";
 import { useAppDispatch, useAppSelector } from "../../context/hooks";
 import Column from "../../components/Column/Column";
 import MobileBoardsNav from "../MobileBoardsNav/MobileBoardsNav";
-import { toggleSideBar } from "../../context/modals";
+import {
+  populatePassedData,
+  toggleBoardsEditor,
+  toggleSideBar,
+} from "../../context/modals";
 
 const Board = () => {
   const { boards } = useAppSelector((state) => state.boards);
@@ -14,11 +17,12 @@ const Board = () => {
   const boardColumnsLength = currentBoard.columns.length;
   const dispatch = useAppDispatch();
 
-  function addtoColumns() {
-    dispatch(addColumnToBoard());
+  function openBoardEditor() {
+    dispatch(toggleBoardsEditor(true));
+    dispatch(populatePassedData(currentBoard));
   }
 
-  function openSidebar(e: any) {
+  function openSidebar() {
     dispatch(toggleSideBar(true));
   }
 
@@ -31,7 +35,7 @@ const Board = () => {
       {boardColumnsLength === 0 && (
         <div className="board_empty--content">
           <p>This board is empty. Create a new column to get started.</p>
-          <button onClick={() => addtoColumns()}> + Add New Column </button>
+          <button onClick={() => openBoardEditor()}> + Add New Column </button>
         </div>
       )}
 
@@ -40,13 +44,13 @@ const Board = () => {
           {currentBoard.columns.map(({ id, name, tasks }) => (
             <Column key={id} name={name} tasks={tasks} />
           ))}
-          <div className="board_new-column" onClick={() => addtoColumns()}>
+          <div className="board_new-column" onClick={() => openBoardEditor()}>
             <p>+ New Column</p>
           </div>
         </div>
       )}
       {!sideBarIsOpen && (
-        <button onClick={(e) => openSidebar(e)} className="board_show-sidebar">
+        <button onClick={() => openSidebar()} className="board_show-sidebar">
           <Show />
         </button>
       )}

@@ -90,27 +90,6 @@ export const boardsSlice = createSlice({
       }
     },
 
-    addColumnToBoard: (state) => {
-      state.boards.map((board) => {
-        if (board.isCurrent) {
-          const cols = board.columns;
-
-          if (cols.length === 0) {
-            cols.push(createNewColumn("Todo"));
-          } else if (cols.length === 1) {
-            cols.push(createNewColumn("Doing"));
-          } else if (cols.length === 2) {
-            cols.push(createNewColumn("Done"));
-          }
-          return board;
-        } else {
-          return board;
-        }
-      });
-
-      localStorage.setItem("boards", JSON.stringify(state.boards));
-    },
-
     addTaskToColumn: (state, action) => {
       const { column, task } = action.payload;
 
@@ -185,7 +164,6 @@ export const boardsSlice = createSlice({
 });
 
 export const {
-  addColumnToBoard,
   addTaskToColumn,
   changeTaskStatus,
   toggleTaskStatusList,
