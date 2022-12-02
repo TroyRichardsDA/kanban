@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "homepage": "https://ayetone.github.io/kanban-task-management",
+  "homepage": "https://ayetone.github.io/kanban",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
