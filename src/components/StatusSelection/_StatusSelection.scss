@@ -23,10 +23,18 @@
 .status-sel_options {
   position: absolute;
   top: 50px;
-  background-color: white;
+
   width: 100%;
+  overflow-y: scroll;
+  max-height: 86px;
   padding: 8px 16px;
+
+  background-color: white;
   color: $grey !important;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .status-sel_option {

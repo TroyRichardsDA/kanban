@@ -124,7 +124,7 @@ const BoardsEditor = () => {
           onBlur={handleBlur}
           visited={visited}
         />
-        <label className="editor_label">
+        <label className="editor_label editor_list">
           Board Columns
           {boardColumns}
         </label>

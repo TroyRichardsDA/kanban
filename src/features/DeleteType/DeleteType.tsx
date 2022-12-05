@@ -2,7 +2,7 @@ import Modal from "../../components/Modals/Modal";
 
 interface Props {
   type: "task" | "board";
-  title: string;
+  title: any;
   deleteThisItem: () => void;
   dontDelete: () => void;
 }
@@ -23,7 +23,8 @@ const DeleteType = (props: Props) => {
     <Modal>
       <h3 className="delete-type_title">Delete this {type}?</h3>
       <p className="delete-type_text">
-        Are you sure you want to delete the '{title}' {fillerText()}
+        Are you sure you want to delete the '{title || title.text!}'{" "}
+        {fillerText()}
       </p>
 
       <div className="delete-type_btns-container">

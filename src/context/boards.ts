@@ -34,15 +34,6 @@ function findCurrentTask(state: BoardsState, name: string, task: ITask) {
   return currentTask;
 }
 
-function createNewColumn(name: string) {
-  return {
-    id: nanoid(),
-    name,
-    visited: false,
-    tasks: [],
-  };
-}
-
 export const boardsSlice = createSlice({
   name: "boards",
   initialState,

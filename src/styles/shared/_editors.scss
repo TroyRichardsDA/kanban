@@ -52,6 +52,16 @@
   border: none;
 }
 
+.editor_list {
+  max-height: 130px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /*      DESKTOP      */
 @include breakpoint(desktop) {
   .editor_add-new:hover {

@@ -56,7 +56,7 @@ function App() {
           <DeleteType
             dontDelete={dontDelete}
             deleteThisItem={deleteThisItem}
-            title={passedData.title || passedData.name}
+            title={passedData.title.text || passedData.name}
             type={typeCheck()}
           />
         )}

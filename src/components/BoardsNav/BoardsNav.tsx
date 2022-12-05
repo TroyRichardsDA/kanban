@@ -40,17 +40,16 @@ const BoardsNav = () => {
   }, [isDarkMode]);
 
   const allBoards = boards.map((board) => (
-    <div
+    <button
       key={board.id}
       className={`boards-nav_board-name ${
         board.isCurrent && "boards-nav_current"
       }`}
+      onClick={() => changeCurrentBoard(board.id, board.isCurrent)}
     >
       <BoardIcon />
-      <p onClick={() => changeCurrentBoard(board.id, board.isCurrent)}>
-        {board.name}
-      </p>
-    </div>
+      <p>{board.name}</p>
+    </button>
   ));
 
   return (

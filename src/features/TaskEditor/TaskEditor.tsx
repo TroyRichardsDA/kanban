@@ -121,8 +121,6 @@ const TaskEditor = () => {
     );
   });
 
-  const reg = /^[a-zA-Z0-9]{2,}$/;
-
   function handleText(e: any) {
     dispatch(updateText({ name: e.target.name, text: e.target.value }));
   }
@@ -153,7 +151,10 @@ const TaskEditor = () => {
           rows={5}
           placeholder="e.g It's always good to take a coffee break"
         />
-        <label className="editor_label"> Subtasks {subtasksList}</label>
+        <label className="editor_label editor_list">
+          {" "}
+          Subtasks {subtasksList}
+        </label>
         <button className="editor_add-new" onClick={(e) => addNewSubtask(e)}>
           + Add New Subtask
         </button>

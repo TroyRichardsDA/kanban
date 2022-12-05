@@ -2,6 +2,18 @@
 @use "../../styles/utils/breakpoints" as *;
 @use "../../styles/shared/typography" as *;
 
+@mixin buttons {
+  display: flex;
+  min-width: 200px;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0;
+
+  background: none;
+  border: none;
+  white-space: nowrap;
+}
+
 .boards-nav_container {
   h3 {
     @include HeadingS;
@@ -14,10 +26,7 @@
   display: grid;
 
   &--create-new {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 0;
+    @include buttons;
 
     button {
       @include HeadingM;
@@ -33,6 +42,31 @@
       fill: $primary;
       stroke: transparent;
     }
+  }
+}
+
+.boards-nav_board-name {
+  @include buttons;
+  border-radius: 0px 100px 100px 0px;
+  margin-left: -24px;
+  padding-left: 24px;
+
+  color: $grey;
+  stroke: $grey;
+  fill: $grey;
+
+  p {
+    @include HeadingM;
+  }
+}
+
+.boards-nav_current {
+  color: white;
+  background-color: $primary;
+
+  svg > path {
+    fill: white;
+    stroke: transparent;
   }
 }
 
@@ -73,35 +107,6 @@
       transition: 0.4s;
       border-radius: 50%;
     }
-  }
-}
-
-.boards-nav_board-name {
-  display: flex;
-  min-width: 240px;
-  align-items: center;
-  gap: 12px;
-  border-radius: 0px 100px 100px 0px;
-  margin-left: -24px;
-  padding: 16px 0;
-  padding-left: 24px;
-
-  color: $grey;
-  stroke: $grey;
-  fill: $grey;
-
-  p {
-    @include HeadingM;
-  }
-}
-
-.boards-nav_current {
-  color: white;
-  background-color: $primary;
-
-  svg > path {
-    fill: white;
-    stroke: transparent;
   }
 }
 

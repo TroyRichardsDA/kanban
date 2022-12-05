@@ -93,6 +93,10 @@
     & svg:not(.header_logo) {
       display: none;
     }
+
+    h2:hover {
+      cursor: default;
+    }
   }
 
   .header_right > button {
