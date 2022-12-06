@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/kanban/static/css/main.9f659bf7.css",
+    "main.css": "/kanban/static/css/main.3e44c44c.css",
     "main.js": "/kanban/static/js/main.37149e96.js",
     "static/js/787.c4e7f8f9.chunk.js": "/kanban/static/js/787.c4e7f8f9.chunk.js",
     "static/media/logo-dark.svg": "/kanban/static/media/logo-dark.ac4c8e487da046e58b1d44d8797a975e.svg",
@@ -17,12 +17,12 @@
     "static/media/icon-add-task-mobile.svg": "/kanban/static/media/icon-add-task-mobile.2a8e26ad102dab09554faa37c9d62c19.svg",
     "static/media/icon-chevron-down.svg": "/kanban/static/media/icon-chevron-down.77595c15c9072ba0ef8a21ab5cc8c376.svg",
     "static/media/icon-chevron-up.svg": "/kanban/static/media/icon-chevron-up.6918f905519d47589a92103b48580f45.svg",
-    "main.9f659bf7.css.map": "/kanban/static/css/main.9f659bf7.css.map",
+    "main.3e44c44c.css.map": "/kanban/static/css/main.3e44c44c.css.map",
     "main.37149e96.js.map": "/kanban/static/js/main.37149e96.js.map",
     "787.c4e7f8f9.chunk.js.map": "/kanban/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f659bf7.css",
+    "static/css/main.3e44c44c.css",
     "static/js/main.37149e96.js"
   ]
 }
