@@ -43,12 +43,18 @@
 
     input,
     textarea {
-      color: white;
+      color: white !important;
 
       &::placeholder {
         color: white;
       }
     }
+  }
+
+  /*        FORM INPUT     */
+  .form-input_label > input,
+  textarea {
+    color: white;
   }
 
   .editor_add-new {
