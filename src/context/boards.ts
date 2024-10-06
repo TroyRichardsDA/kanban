@@ -74,6 +74,7 @@ export const boardsSlice = createSlice({
         state.boards.splice(index, 1);
         state.boards[0].isCurrent = true;
         localStorage.setItem("boards", JSON.stringify(state.boards));
+
       } else {
         alert(
           "You must have atleast one board active at all times. Please make another board before trying to delete this one."

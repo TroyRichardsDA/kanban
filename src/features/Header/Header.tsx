@@ -32,8 +32,8 @@ function Header() {
   }
 
   function deleteBoard() {
-    dispatch(toggleDeleteModal(true));
     dispatch(toggleBoardMiniModal());
+    dispatch(toggleDeleteModal(true));
     dispatch(populatePassedData(currentBoard));
   }
 

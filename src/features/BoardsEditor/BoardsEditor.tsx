@@ -68,7 +68,7 @@ const BoardsEditor = () => {
       columns: validColumns,
     };
 
-    const filledCorretly = board.name !== ("" || null);
+    const filledCorretly = board.name !== undefined;
 
     if (filledCorretly) {
       dispatch(toggleBoardsEditor(false));
